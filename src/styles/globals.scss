@@ -1,0 +1,41 @@
+// body {
+//   // background-color: findLightColor($primary);
+// }
+html {
+  overflow: hidden;
+}
+$export-colors: (
+  purple: $purple,
+  blue: $blue,
+  cyan: $cyan,
+  turquoise: $turquoise,
+  yellow: $yellow,
+  green: $green,
+  orange: $orange,
+  red: $red,
+);
+$export-vars: (
+  block-spacing: $block-spacing,
+  gap: $gap,
+);
+:root {
+  @each $name, $color in $export-colors {
+    --#{$name}: #{$color};
+    --#{$name}-dark: #{findDarkColor($color)};
+    --#{$name}-light: #{findLightColor($color)};
+  }
+  @each $name, $val in $export-vars {
+    --#{$name}: #{$val};
+  }
+}
+
+// body {
+//   &::after {
+//     @include arrow(#000);
+//     content: "";
+//     position: fixed;
+//     bottom: 2rem;
+//     left: 50%;
+//     top: auto;
+//   }
+// }
