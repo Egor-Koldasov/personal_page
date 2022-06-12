@@ -31,23 +31,23 @@ const ListElement = (props: WrapperProps) => (
   </ListElementStyled>
 );
 
+const Accent = styled.span`
+  color: #d56d39;
+`
+
 export const Section2 = () => (
   <Section2Styled className="">
-    <div>
-      <Title className="title is-3">My Values</Title>
-      <ListStyled className='has-text-light'>
-        <ListElement>
-          Readable, modular code that uses generalized reusable approaches.
-        </ListElement>
-        <ListElement>
-          Thorough testing to produce consistent updates that align with the rest of the
-          application.
-        </ListElement>
-        <ListElement>
-          Scalable, optimized solutions that handle resources efficiently as the project
-          grows.
-        </ListElement>
-      </ListStyled>
-    </div>
+    <Title className="title is-3">My Values</Title>
+    <ListStyled className='has-text-light'>
+      <ListElement>
+        Readable, modular code with a focus on <Accent>reusability</Accent>.
+      </ListElement>
+      <ListElement>
+        Thorough <Accent>test coverage</Accent> for better team cooperation and safer releases.
+      </ListElement>
+      <ListElement>
+        <Accent>Optimization</Accent>. Scalable solutions that handle resources efficiently even when the project usage grows.
+      </ListElement>
+    </ListStyled>
   </Section2Styled>
 );

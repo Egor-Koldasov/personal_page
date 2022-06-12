@@ -17,6 +17,8 @@ $export-colors: (
 $export-vars: (
   block-spacing: $block-spacing,
   gap: $gap,
+  bp-tablet: $tablet,
+  bp-desktop: $desktop,
 );
 :root {
   @each $name, $color in $export-colors {

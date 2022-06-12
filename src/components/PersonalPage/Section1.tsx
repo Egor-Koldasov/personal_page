@@ -58,7 +58,7 @@ const Section1Styled = styled(BaseSection)`
 export const Section1 = () => (
   <Section1Styled className="">
     <NameTitle className="title is-3">Egor Koldasov</NameTitle>
-    <WebDevTitle className="title is-1">Web Developer</WebDevTitle>
+    <WebDevTitle className="title is-2 is-size-1-tablet">Web Developer</WebDevTitle>
     <StackTitle className="title is-4">
       React, NodeJS, SQL, TypeScript
     </StackTitle>
