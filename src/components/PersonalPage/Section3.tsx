@@ -7,7 +7,7 @@ import { WrapperProps } from "./WrapperProps";
 
 
 const Section3Styled = styled(BaseSection)`
-  background-color: #bcbeb1;
+  background-color: #d7e1e0;
   a {
     color: #4667ab;
   }
