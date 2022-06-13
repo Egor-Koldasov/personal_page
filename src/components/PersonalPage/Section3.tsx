@@ -17,7 +17,15 @@ const Section3Styled = styled(BaseSection)`
   }
 `;
 const Photo = (props: WrapperProps) => (
-  <Image src="/photo.jpg" alt="photo" width={300} height={300} {...props} objectFit="contain" />
+  <Image
+    src="/photo.jpg"
+    alt="photo"
+    width={300}
+    height={300}
+    {...props}
+    objectFit="contain"
+    priority
+  />
 );
 const PhotoStyled = styled(Photo)`
   flex-shrink: 1;
@@ -104,7 +112,7 @@ export const Section3 = () => {
   return (
     <Section3Styled>
       <ProfileBlock className="columns">
-        <PhotoBox className="column"><Photo/></PhotoBox>
+        <PhotoBox className="column"><Photo /></PhotoBox>
         <PhotoText className="column is-size-5">
           <LinkRowTop>
             I&apos;m located at{' '}
