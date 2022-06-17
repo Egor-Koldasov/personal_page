@@ -11,10 +11,12 @@ const ListElementStyled = styled.li`
   color: #6a5a74;
   font-weight: bold;
 `
-const ListStyled = styled.ul`
+export const ListStyled = styled.ul`
   display: flex;
   flex-direction: column;
   gap: var(--block-spacing);
+  width: 65rem;
+  max-width: 100%;
 `
 const Title = styled.h3`
   text-align: center;

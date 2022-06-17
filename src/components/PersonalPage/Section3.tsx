@@ -16,6 +16,11 @@ const Section3Styled = styled(BaseSection)`
     justify-content: center;
   }
 `;
+const Title = styled.h3`
+  text-align: center;
+  color: #111719;
+  text-transform: uppercase;
+`;
 const Photo = (props: WrapperProps) => (
   <Image
     src="/photo.jpg"
@@ -111,6 +116,7 @@ const MobileLinks = () => (
 export const Section3 = () => {
   return (
     <Section3Styled>
+    <Title className="title is-3">My Contacts</Title>
       <ProfileBlock className="columns">
         <PhotoBox className="column"><Photo /></PhotoBox>
         <PhotoText className="column is-size-5">
