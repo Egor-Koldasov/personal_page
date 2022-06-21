@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { breakpointFrom } from "../../styles/modules/breakpointFrom";
 import { bpTablet } from "../../styles/modules/vars";
 import { cn } from "../../util/cn";
+import { ImageViewer } from "../ImageViewer";
 import { BaseSection } from "./BaseSection";
+import ioradStepList from '../../../public/portfolio/iorad/step_list.png';
+import { StaticImageData } from "next/image";
 
 const Section4Styled = styled(BaseSection)`
   background-color: #FFF7E0;
+  /* height: 100%; */
 `;
 
 const Title = styled.h3`
@@ -23,10 +27,10 @@ const Box = styled.div`
 `
 
 type PortfolioImage = {
-  path: string,
+  path: StaticImageData,
   description: string,
 }
-type PortfolioItem = {
+export type PortfolioItem = {
   jobTitle: string,
   projectName: string,
   description: string,
@@ -57,12 +61,14 @@ const portfolio: PortfolioItem[] = [
       
       system, admin panel, optimizing slow database queries and inefficient front-end code,
       working on multiple redesigns, adding features to the player and editor.`,
-    images: [],
+    images: [
+      { path: ioradStepList, description: 'The basic tutorial' }
+    ],
   },
   {
     projectName: 'Autostat Radar - car market analytics',
     jobTitle: 'Full Stack Web Developer',
-    description: `Data Analytics app of the Russian car market. The customer had the OLAP database
+    description: `Data Analytics app of the car market. The customer had the OLAP database
       filled with car market data and requested the app to view that data in a user-friendly
       feature-rich way with tables, diagrams and maps.
       I've been working there as a full-stack developer, adding features to Google Maps,
@@ -80,6 +86,8 @@ const ListStyled = styled.ul`
   width: 100%;
   position: relative;
   flex-grow: 1;
+  /* flex-shrink: 1;
+  overflow-y: auto; */
   justify-content: center;
   align-items: center;
   &.expand {
@@ -107,32 +115,43 @@ const CardItemStyled = styled.div`
     z-index: 1;
     transition: top 0.2s ease-in-out;
   }
-  .media.media {
-    margin-bottom: 0;
-  }
   .content {
     height: 0px;
     overflow: hidden;
   }
 `;
+export const CardContentExtra = styled.div`
+`;
 const CardBoxStyled = styled.li`
+  width: 100%;
+  display: flex;
+  justify-content: center;
   &.active {
     ${CardItemStyled}.overlay {
       border-color: #FEA86D;
       height: 100%;
       width: 100%;
-      position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 2;
+      overflow-y: auto;
       .content {
         height: 100%;
       }
     }
   }
+  &:not(.active), & ${CardItemStyled}:not(.overlay) {
+    .media.media {
+      margin-bottom: 0;
+    }
+    ${CardContentExtra} {
+      display: none;
+    }
+  }
 `;
+
 type CardItemProps = {
   portfolioItem: PortfolioItem,
   className?: string,
@@ -149,9 +168,12 @@ const CardItem = ({ portfolioItem, className }: CardItemProps) => {
             <p className="subtitle is-6">{portfolioItem.jobTitle}</p>
           </div>
         </div>
-        <div className='content is-size-5'>
-          {portfolioItem.description}
-        </div>
+        <CardContentExtra>
+          <ImageViewer portfolioItem={portfolioItem} />
+          <div className='content is-size-5 block'>
+            {portfolioItem.description}
+          </div>
+        </CardContentExtra>
       </div>
     </CardItemStyled>
   )
