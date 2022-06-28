@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { cn } from '../../util/cn';
+import { cn } from '../../lib/cn';
 import { WrapperProps } from "./WrapperProps";
 
 const SectionStyled = styled.section`

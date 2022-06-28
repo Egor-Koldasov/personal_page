@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { cn } from '../../util/cn';
+import { cn } from '../../lib/cn';
 import { BaseSection } from "./BaseSection";
 import { WrapperProps } from './WrapperProps';
 
-const Section2Styled = styled(BaseSection)`
+const SectionValuesStyled = styled(BaseSection)`
   background-color: #A1C8B3;
 `;
 const ListElementStyled = styled.li`
@@ -37,8 +37,8 @@ const Accent = styled.span`
   color: #d56d39;
 `
 
-export const Section2 = () => (
-  <Section2Styled className="">
+export const SectionValues = () => (
+  <SectionValuesStyled className="">
     <Title className="title is-3">My Values</Title>
     <ListStyled className='has-text-light'>
       <ListElement>
@@ -51,5 +51,5 @@ export const Section2 = () => (
         <Accent>Optimization</Accent>. Scalable solutions that handle resources efficiently even when the project usage grows.
       </ListElement>
     </ListStyled>
-  </Section2Styled>
+  </SectionValuesStyled>
 );
