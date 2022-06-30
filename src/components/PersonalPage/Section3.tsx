@@ -7,7 +7,7 @@ import { WrapperProps } from "./WrapperProps";
 
 
 const Section3Styled = styled(BaseSection)`
-  background-color: #d7e1e0;
+  background-color: #d9e1ff;
   a {
     color: #4667ab;
   }
@@ -15,6 +15,11 @@ const Section3Styled = styled(BaseSection)`
   ${breakpointFrom(bpTablet)} {
     justify-content: center;
   }
+`;
+const Title = styled.h3`
+  text-align: center;
+  color: #424255;
+  text-transform: uppercase;
 `;
 const Photo = (props: WrapperProps) => (
   <Image
@@ -47,11 +52,11 @@ const ProfileBlock = styled.div`
 const PhotoBox = styled.div`
   max-width: 300px;
   max-height: 300px;
-  border: .5rem solid #111719;
+  border: .5rem solid #424255;
   padding: 0;
 `
 const PhotoText = styled.div`
-  color: #111719;
+  color: #424255;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -111,6 +116,7 @@ const MobileLinks = () => (
 export const Section3 = () => {
   return (
     <Section3Styled>
+    <Title className="title is-3">My Contacts</Title>
       <ProfileBlock className="columns">
         <PhotoBox className="column"><Photo /></PhotoBox>
         <PhotoText className="column is-size-5">

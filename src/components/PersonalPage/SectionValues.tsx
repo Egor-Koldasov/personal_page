@@ -1,24 +1,26 @@
 import styled from 'styled-components';
-import { cn } from '../../util/cn';
+import { cn } from '../../lib/cn';
 import { BaseSection } from "./BaseSection";
 import { WrapperProps } from './WrapperProps';
 
-const Section2Styled = styled(BaseSection)`
-  background-color: #A1C8B3;
+const SectionValuesStyled = styled(BaseSection)`
+  background-color: #D7FDDF;
 `;
 const ListElementStyled = styled.li`
-  background-color: #E1EAEE;
-  color: #6a5a74;
+  background-color: #E0FFFD;
+  color: #444558;
   font-weight: bold;
 `
-const ListStyled = styled.ul`
+export const ListStyled = styled.ul`
   display: flex;
   flex-direction: column;
   gap: var(--block-spacing);
+  width: 65rem;
+  max-width: 100%;
 `
 const Title = styled.h3`
   text-align: center;
-  color: #6a5a74;
+  color: #444558;
   text-transform: uppercase;
 `;
 const ListElement = (props: WrapperProps) => (
@@ -32,11 +34,11 @@ const ListElement = (props: WrapperProps) => (
 );
 
 const Accent = styled.span`
-  color: #d56d39;
+  color: #70c05c;
 `
 
-export const Section2 = () => (
-  <Section2Styled className="">
+export const SectionValues = () => (
+  <SectionValuesStyled className="">
     <Title className="title is-3">My Values</Title>
     <ListStyled className='has-text-light'>
       <ListElement>
@@ -49,5 +51,5 @@ export const Section2 = () => (
         <Accent>Optimization</Accent>. Scalable solutions that handle resources efficiently even when the project usage grows.
       </ListElement>
     </ListStyled>
-  </Section2Styled>
+  </SectionValuesStyled>
 );

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@seznam/compose-react-refs": "^1.0.6",
     "bulma": "^0.9.4",
     "classnames": "^2.3.1",
     "next": "12.1.6",

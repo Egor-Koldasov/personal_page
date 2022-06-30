@@ -31,6 +31,22 @@ $export-vars: (
   }
 }
 
+* {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #b1ab9c;
+    &:hover {
+      background-color: rgb(107 103 93);
+    }
+  }
+}
+
 // body {
 //   &::after {
 //     @include arrow(#000);
