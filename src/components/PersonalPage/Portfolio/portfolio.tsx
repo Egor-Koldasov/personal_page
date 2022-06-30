@@ -21,7 +21,7 @@ export type PortfolioItem = {
 export const portfolio: PortfolioItem[] = [
   {
     projectName: 'Sangix',
-    shortDescription: 'hospital appointment booking',
+    shortDescription: 'Hospital appointment booking',
     jobTitle: 'Front End Web Developer',
     description: `Sangix is the application for the hospital booking. I've been implementing the front-end
       part including the booking process itself, management of the appointments booked,
@@ -31,7 +31,7 @@ export const portfolio: PortfolioItem[] = [
   },
   {
     projectName: 'Iorad',
-    shortDescription: 'tutorial building tool',
+    shortDescription: 'Tutorial building tool',
     jobTitle: 'Full Stack Web Developer',
     description: `I’ve been working as a full-stack developer with React and NodeJS. Have been building
       the application itself, the website for it, browser extension, payment system, admin
@@ -52,7 +52,7 @@ export const portfolio: PortfolioItem[] = [
   },
   {
     projectName: 'Autostat Radar',
-    shortDescription: 'automobile market analytics',
+    shortDescription: 'Automobile market analytics',
     jobTitle: 'Full Stack Web Developer',
     description: `Data Analytics app of the car market. The customer had the OLAP database
       filled with car market data and requested the app to view that data in a user-friendly

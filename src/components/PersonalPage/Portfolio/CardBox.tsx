@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { cn } from "../../../lib/cn";
 import { CardItemStyled, CardItem, CardContentExtra, ShortDescription } from "./CardItem";
 import { CloseBtnStyled } from "./CloseBtn";
+import { orange } from "./colors";
 import { PortfolioItem } from "./portfolio";
 
 const CardBoxStyled = styled.li`
@@ -12,7 +13,7 @@ const CardBoxStyled = styled.li`
   justify-content: center;
   &.active {
     ${CardItemStyled}.overlay {
-      border-color: #FEA86D;
+      border-color: ${orange};
       height: 100%;
       width: 100%;
       top: 0;
@@ -20,7 +21,6 @@ const CardBoxStyled = styled.li`
       left: 0;
       right: 0;
       z-index: 2;
-      overflow-y: auto;
       justify-content: flex-start;
       cursor: default;
       ${ShortDescription} {

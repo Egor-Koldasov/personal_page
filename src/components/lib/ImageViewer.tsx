@@ -1,15 +1,18 @@
+import composeRefs from "@seznam/compose-react-refs";
 import Image, { StaticImageData } from "next/image";
-import { PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { forwardRef, PropsWithChildren, Ref, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { css } from "styled-components";
-import { useOnResize } from "../lib/useOnResize";
-import { flexColumnGrow } from "../styles/modules/flexColumnGrow";
-import { flexSafeCenterX } from "../styles/modules/flexSafeCenterX";
-import { PortfolioItem } from "./PersonalPage/Portfolio/portfolio";
+import { useOnResize } from "../../lib/useOnResize";
+import { flexColumnGrow } from "../../styles/modules/flexColumnGrow";
+import { flexSafeCenterX } from "../../styles/modules/flexSafeCenterX";
+import { green, orange } from "../PersonalPage/Portfolio/colors";
+import { PortfolioItem } from "../PersonalPage/Portfolio/portfolio";
+import { ScrollShadow, ScrollListProps } from "./ScrollShadow";
 
 const cssWidth = ({ width }: { width: number }) => css`width: ${width}px;`;
 export const ImageInlineStyled = styled.div<{ width: number }>`
   position: relative;
-  border: 4px solid #4DB39E;
+  border: 4px solid ${green};
   display: flex;
   box-sizing: content-box;
   min-height: 150px;
@@ -17,7 +20,7 @@ export const ImageInlineStyled = styled.div<{ width: number }>`
   cursor: pointer;
   ${cssWidth}
   &:hover {
-    border-color: #FEA86D;
+    border-color: ${orange};
   }
 `;
 type ImageInlineProps = {
@@ -69,15 +72,20 @@ const ImageInlineListStyled = styled.div`
 
 const autoScrollStep = 1;
 const autoScrollFreq = 30;
-const ImageInlineList = (props: PropsWithChildren) => {
+const ImageInlineList = forwardRef((props: ScrollListProps, externalRef: Ref<HTMLDivElement>) => {
   const ref = useRef<HTMLDivElement>(null);
   const [autoScrollDir, setAutoScrollDir] = useState<'left' | 'right'>('right');
   const [isHovering, setIsHovering] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const onAutoScrollEdge = useCallback(() => {
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 1000);
+  }, [setIsPaused])
   const onMouseEnter = useCallback(() => setIsHovering(true), [setIsHovering]);
   const onMouseLeave = useCallback(() => setIsHovering(false), [setIsHovering]);
   const runAutoScrollStep = useCallback(() => {
     const el = ref.current;
-    if (!el || el.scrollWidth <= el.clientWidth || isHovering) return;
+    if (!el || el.scrollWidth <= el.clientWidth || isHovering || isPaused) return;
     const maxScrollLeft = el.scrollWidth - el.clientWidth;
     const scrollLeft = Math.round(el.scrollLeft);
     const nextScrollLeft =
@@ -85,28 +93,35 @@ const ImageInlineList = (props: PropsWithChildren) => {
         Math.min(scrollLeft + autoScrollStep, maxScrollLeft) :
         Math.max(scrollLeft - autoScrollStep, 0);
     el.scroll({ left: nextScrollLeft });
+    el.dispatchEvent(new UIEvent('scroll'));
     if (autoScrollDir === 'right' && nextScrollLeft === maxScrollLeft) {
       setAutoScrollDir('left');
+      onAutoScrollEdge();
     }
     if (autoScrollDir === 'left' && nextScrollLeft === 0) {
       setAutoScrollDir('right');
+      onAutoScrollEdge();
     }
-  }, [autoScrollDir, ref, isHovering]);
+  }, [autoScrollDir, ref, isHovering, isPaused, onAutoScrollEdge]);
   useEffect(() => {
     const intervalId = setInterval(runAutoScrollStep, autoScrollFreq);
     return () => clearInterval(intervalId);
   }, [runAutoScrollStep]);
+  useEffect(() => {
+    onAutoScrollEdge();
+  }, [onAutoScrollEdge]);
 
   return (
     <ImageInlineListStyled
-      ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      {...props}
+      ref={composeRefs(ref, externalRef)}
     >
       {props.children}
     </ImageInlineListStyled>
   )
-}
+})
 
 type ModalImageBoxProps = {
 }
@@ -177,6 +192,7 @@ const ImageModal = (props: ImageModalProps) => {
 
 export const ImageViewerStyled = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   flex-grow: 1;
   justify-self: stretch;
@@ -189,11 +205,11 @@ export const ImageViewer = (props: ImageViewerProps) => {
   const { portfolioItem } = props;
   return (
     <ImageViewerStyled className="block is-clipped">
-      <ImageInlineList>
+      <ScrollShadow ScrollList={ImageInlineList} shadowColor={[255, 247, 224]}>
         {portfolioItem.images.map(({ data }, index) => (
           <ImageInline key={index} onOpen={() => setOpenImageIndex(index)} src={data} />
         ))}
-      </ImageInlineList>
+      </ScrollShadow>
       {openImageIndex !== null && (
         <ImageModal {...{ openImageIndex, setOpenImageIndex, portfolioItem }} />
       )}

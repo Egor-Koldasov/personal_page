@@ -1,18 +1,19 @@
-import { HTMLProps, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { cn } from "../../../lib/cn";
 import { BaseSection } from "../BaseSection";
 import { CardBox } from "./CardBox";
+import { green } from "./colors";
 import { portfolio } from "./portfolio";
 
-const Section4Styled = styled(BaseSection)`
+const SectionPortfolioStyled = styled(BaseSection)`
   background-color: #FFF7E0;
   /* height: 100%; */
 `;
 
 const Title = styled.h3`
   text-align: center;
-  color: #4DB39E;
+  color: ${green};
   text-transform: uppercase;
 `;
 
@@ -41,13 +42,13 @@ export const CardHeader = styled.div`
 export const SectionPortfolio = () => {
   const [activeItem, setActiveItem] = useState<string>('');
   return (
-    <Section4Styled>
+    <SectionPortfolioStyled>
       <Title className="title is-3">My Experience</Title>
       <ListStyled className={cn('has-text-light', { expand: !!activeItem })}>
         {portfolio.map((portfolioItem) => (
           <CardBox key={portfolioItem.projectName} {...{ portfolioItem, activeItem, setActiveItem }} />
         ))}
       </ListStyled>
-    </Section4Styled>
+    </SectionPortfolioStyled>
   );
 };

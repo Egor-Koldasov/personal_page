@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { cn } from "../../../lib/cn";
-import { ImageViewer } from "../../ImageViewer";
+import { ImageViewer } from "../../lib/ImageViewer";
 import { CloseBtn } from "./CloseBtn";
 import { CardHeader } from "./SectionPortfolio";
 import { PortfolioItem } from "./portfolio";
 import { flexColumnGrow } from "../../../styles/modules/flexColumnGrow";
+import { darkGrey, green, orange } from "./colors";
+import { PropsWithChildren, useMemo } from "react";
+import { ScrollShadow, ScrollShadowStyled } from "../../lib/ScrollShadow";
 
 
 export const CardContentExtra = styled.div`
@@ -16,18 +19,18 @@ export const CardItemStyled = styled.div`
   width: 18rem;
   min-height: 15rem;
   max-width: 100%;
-  border: 8px solid #4DB39E;
+  border: 8px solid ${green};
   border-radius: 0;
   /* box-shadow: none; */
   background-color: #FFF7E0;
   text-align: center;
   .title, .subtitle {
-    color: rgb(107 103 93);
+    color: ${darkGrey};
   }
   cursor: pointer;
   transition: border-color 0.2s ease-in-out;
   &:hover {
-    border-color: #FEA86D;
+    border-color: ${orange};
   }
   &.overlay {
     position: absolute;
@@ -49,6 +52,11 @@ export const Description = styled.div`
   max-width: 1000px;
   margin: 0 auto;
 `;
+
+export const CardItemScrollBox = styled.div`
+  ${flexColumnGrow()}
+  overflow-y: auto;
+`;
 type CardItemProps = {
   portfolioItem: PortfolioItem;
   className?: string;
@@ -58,24 +66,28 @@ type CardItemProps = {
 export const CardItem = ({ portfolioItem, className, active, onClose }: CardItemProps) => {
   return (
     <CardItemStyled className={cn("card", className)}>
-      <div className="card-content">
-        <CardHeader className="media">
-          <div className="media-content">
-            <p className="title is-4">{portfolioItem.projectName}</p>
-            <ShortDescription className="subtitle is-5">{portfolioItem.shortDescription}</ShortDescription>
-            <p className="subtitle is-6">{portfolioItem.jobTitle}</p>
-          </div>
-          <CloseBtn onClick={onClose} />
-        </CardHeader>
-        {active && (
-          <CardContentExtra>
-            {portfolioItem.images.length > 0 && <ImageViewer portfolioItem={portfolioItem} />}
-            <Description className='content is-size-5 block'>
-              {portfolioItem.description}
-            </Description>
-          </CardContentExtra>
-        )}
-      </div>
+      <ScrollShadow ScrollList={CardItemScrollBox} shadowColor={[255, 247, 224]}>
+        <div className="card-content">
+          <CardHeader className="media">
+            <div className="media-content">
+              <p className="title is-4">{portfolioItem.projectName}</p>
+              <ShortDescription className="subtitle is-5">
+                {portfolioItem.shortDescription}
+              </ShortDescription>
+              <p className="subtitle is-6">{portfolioItem.jobTitle}</p>
+            </div>
+            <CloseBtn onClick={onClose} />
+          </CardHeader>
+          {active && (
+            <CardContentExtra>
+              {portfolioItem.images.length > 0 && <ImageViewer portfolioItem={portfolioItem} />}
+              <Description className='content is-size-5 block'>
+                {portfolioItem.description}
+              </Description>
+            </CardContentExtra>
+          )}
+        </div>
+      </ScrollShadow>
     </CardItemStyled>
   );
 };
