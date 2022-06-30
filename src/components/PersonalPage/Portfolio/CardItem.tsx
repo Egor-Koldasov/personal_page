@@ -5,7 +5,7 @@ import { CloseBtn } from "./CloseBtn";
 import { CardHeader } from "./SectionPortfolio";
 import { PortfolioItem } from "./portfolio";
 import { flexColumnGrow } from "../../../styles/modules/flexColumnGrow";
-import { darkGrey, green, orange } from "./colors";
+import { background, text, lightAccent, strongAccent, cardBackground } from "./colors";
 import { PropsWithChildren, useMemo } from "react";
 import { ScrollShadow, ScrollShadowStyled } from "../../lib/ScrollShadow";
 
@@ -19,18 +19,18 @@ export const CardItemStyled = styled.div`
   width: 18rem;
   min-height: 15rem;
   max-width: 100%;
-  border: 8px solid ${green};
+  border: 8px solid ${lightAccent};
   border-radius: 0;
   /* box-shadow: none; */
-  background-color: #FFF7E0;
+  background-color: ${cardBackground};
   text-align: center;
-  .title, .subtitle {
-    color: ${darkGrey};
+  .title, .subtitle, .content {
+    color: ${text};
   }
   cursor: pointer;
   transition: border-color 0.2s ease-in-out;
   &:hover {
-    border-color: ${orange};
+    border-color: ${strongAccent};
   }
   &.overlay {
     position: absolute;
@@ -56,6 +56,13 @@ export const Description = styled.div`
 export const CardItemScrollBox = styled.div`
   ${flexColumnGrow()}
   overflow-y: auto;
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: ${lightAccent};
+    &:hover {
+      background-color: ${strongAccent};
+    }
+  }
 `;
 type CardItemProps = {
   portfolioItem: PortfolioItem;
@@ -66,7 +73,7 @@ type CardItemProps = {
 export const CardItem = ({ portfolioItem, className, active, onClose }: CardItemProps) => {
   return (
     <CardItemStyled className={cn("card", className)}>
-      <ScrollShadow ScrollList={CardItemScrollBox} shadowColor={[255, 247, 224]}>
+      <ScrollShadow ScrollList={CardItemScrollBox}>
         <div className="card-content">
           <CardHeader className="media">
             <div className="media-content">

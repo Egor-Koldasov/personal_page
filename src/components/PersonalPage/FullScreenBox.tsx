@@ -15,7 +15,7 @@ export const FullScreenBox = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 12px;
-    background-color: #A1C8B3;
+    background-color: #90d09e;
     &:hover {
       background-color: #87ab97;
     }

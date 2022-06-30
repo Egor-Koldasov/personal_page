@@ -24,13 +24,13 @@ const theme3 = {
 const theme4 = {
   ...theme3,
   section1Bg: `#FFF7E0`,
-  section1Text1: `#4DB39E`,
+  section1Text1: `#90d09e`,
   section1Text2: `#fff`,
-  section1Text2Bg: `#4DB39E`,
+  section1Text2Bg: `#90d09e`,
 };
 const theme5 = {
   ...theme4,
-  section1Bg: `#B7E3E2`,
+  section1Bg: `#FBFFDE`,
   // section1Text1: `#4DB39E`,
   // section1Text2: `#fff`,
   // section1Text2Bg: `#4DB39E`,

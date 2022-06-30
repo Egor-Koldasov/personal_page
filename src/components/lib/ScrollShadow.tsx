@@ -75,6 +75,23 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
       ${({ shadowColor = [255, 255, 255] }) => css`
         background:
           linear-gradient(
+            0deg,
+            ${makeColor(shadowColor)} 0%,
+            ${makeColor(shadowColor, 70)} 50%,
+            ${makeColor(shadowColor, 10)} 100%
+          );
+      `}
+      border-radius: 10% 10% 0 0;
+    }
+    &.top {
+      right: 0;
+      left: 0;
+      top: 0;
+      transform: translateY(-100%);
+      height: ${shadowSize};
+      ${({ shadowColor = [255, 255, 255] }) => css`
+        background:
+          linear-gradient(
             180deg,
             ${makeColor(shadowColor)} 0%,
             ${makeColor(shadowColor, 70)} 50%,
@@ -96,6 +113,11 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
     ${({ scrollBottom }) => scrollBottom && css`
       &.bottom {
         transform: translateY(50%);
+      }
+    `}
+    ${({ scrollTop }) => scrollTop && css`
+      &.top {
+        transform: translateY(-50%);
       }
     `}
   }

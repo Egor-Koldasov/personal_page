@@ -5,22 +5,23 @@ import styled, { css } from "styled-components";
 import { useOnResize } from "../../lib/useOnResize";
 import { flexColumnGrow } from "../../styles/modules/flexColumnGrow";
 import { flexSafeCenterX } from "../../styles/modules/flexSafeCenterX";
-import { green, orange } from "../PersonalPage/Portfolio/colors";
+import { lightAccent, strongAccent } from "../PersonalPage/Portfolio/colors";
 import { PortfolioItem } from "../PersonalPage/Portfolio/portfolio";
 import { ScrollShadow, ScrollListProps } from "./ScrollShadow";
 
 const cssWidth = ({ width }: { width: number }) => css`width: ${width}px;`;
 export const ImageInlineStyled = styled.div<{ width: number }>`
   position: relative;
-  border: 4px solid ${green};
+  border: 4px solid ${lightAccent};
   display: flex;
   box-sizing: content-box;
   min-height: 150px;
   flex-shrink: 0;
   cursor: pointer;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%);
   ${cssWidth}
   &:hover {
-    border-color: ${orange};
+    border-color: ${strongAccent};
   }
 `;
 type ImageInlineProps = {
@@ -68,6 +69,13 @@ const ImageInlineListStyled = styled.div`
   gap: 1rem;
   padding-bottom: 1rem;
   ${flexSafeCenterX()}
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: ${lightAccent};
+    &:hover {
+      background-color: ${strongAccent};
+    }
+  }
 `;
 
 const autoScrollStep = 1;
@@ -205,7 +213,7 @@ export const ImageViewer = (props: ImageViewerProps) => {
   const { portfolioItem } = props;
   return (
     <ImageViewerStyled className="block is-clipped">
-      <ScrollShadow ScrollList={ImageInlineList} shadowColor={[255, 247, 224]}>
+      <ScrollShadow ScrollList={ImageInlineList}>
         {portfolioItem.images.map(({ data }, index) => (
           <ImageInline key={index} onOpen={() => setOpenImageIndex(index)} src={data} />
         ))}

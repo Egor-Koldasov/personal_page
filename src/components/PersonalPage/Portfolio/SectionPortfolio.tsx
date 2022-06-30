@@ -3,17 +3,17 @@ import styled from "styled-components";
 import { cn } from "../../../lib/cn";
 import { BaseSection } from "../BaseSection";
 import { CardBox } from "./CardBox";
-import { green } from "./colors";
+import { background, text, lightAccent } from "./colors";
 import { portfolio } from "./portfolio";
 
 const SectionPortfolioStyled = styled(BaseSection)`
-  background-color: #FFF7E0;
+  background-color: ${background}
   /* height: 100%; */
 `;
 
 const Title = styled.h3`
   text-align: center;
-  color: ${green};
+  color: ${text};
   text-transform: uppercase;
 `;
 

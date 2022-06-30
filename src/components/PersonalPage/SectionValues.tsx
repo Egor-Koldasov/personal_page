@@ -4,11 +4,11 @@ import { BaseSection } from "./BaseSection";
 import { WrapperProps } from './WrapperProps';
 
 const SectionValuesStyled = styled(BaseSection)`
-  background-color: #A1C8B3;
+  background-color: #D7FDDF;
 `;
 const ListElementStyled = styled.li`
-  background-color: #E1EAEE;
-  color: #6a5a74;
+  background-color: #E0FFFD;
+  color: #444558;
   font-weight: bold;
 `
 export const ListStyled = styled.ul`
@@ -20,7 +20,7 @@ export const ListStyled = styled.ul`
 `
 const Title = styled.h3`
   text-align: center;
-  color: #6a5a74;
+  color: #444558;
   text-transform: uppercase;
 `;
 const ListElement = (props: WrapperProps) => (
@@ -34,7 +34,7 @@ const ListElement = (props: WrapperProps) => (
 );
 
 const Accent = styled.span`
-  color: #d56d39;
+  color: #70c05c;
 `
 
 export const SectionValues = () => (

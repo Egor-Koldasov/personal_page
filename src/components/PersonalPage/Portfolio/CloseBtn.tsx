@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
 import styled from "styled-components";
+import { strongAccent } from "./colors";
 
 
 export const CloseBtnStyled = styled.div`
@@ -10,17 +11,17 @@ export const CloseBtnStyled = styled.div`
 
 	width: 2rem; height: 2rem;
 	border-radius: 50%;
-  color: #FEA86D;
+  color: ${strongAccent};
 	text-indent: 100%;
 	cursor: pointer;
 	
 	&:focus {
 		outline: solid 0 transparent;
-		box-shadow: 0 0 0 2px #ffe7d7;
+		box-shadow: 0 0 0 2px #fff;
 	}
 	
 	&:hover {
-		background: #ffe7d7;
+		background: #fff;
 	}
 	
 	&:before, &:after {
