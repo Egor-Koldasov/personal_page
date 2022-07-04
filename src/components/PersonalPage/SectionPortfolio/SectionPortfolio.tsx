@@ -39,10 +39,6 @@ const ListStyled = styled.ul`
   }
 `;
 
-export const CardHeader = styled.div`
-  position: relative;
-`;
-
 export const SectionPortfolio = () => {
   const [activeItem, setActiveItem] = useState<string>('');
   return (

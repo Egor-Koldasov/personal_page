@@ -1,8 +1,9 @@
 import { bgBlack, bgGreyDark, textBlue, textCyan, textGreen, textPurple, textRed, textYellow } from "../../../../styles/modules/colors";
 
+const white = '#ddd';
 const basic = {
-  textColor: '#fff',
-  sectionDividerColor: '#fff',
+  textColor: white,
+  sectionDividerColor: white,
   bgColor: bgBlack,
   scrollColor: '#333',
   scrollHoverColor: '#555',
@@ -13,7 +14,7 @@ const sectionEntry = {
   nameTextColor: textCyan,
   webDevTitleColor: textGreen,
   webDevTitleBg: basic.bgColor,
-  webDevBorderColor: '#fff',
+  webDevBorderColor: white,
   stackColor: textYellow,
 };
 const sectionValues = {
@@ -28,8 +29,8 @@ const sectionValues = {
 const sectionPortfolio = {
   mainBg: basic.bgColor,
   cardBg: basic.bgColor,
-  cardBorderColor: '#ddd',
-  cardBorderColorHover: '#fff',
+  cardBorderColor: '#aaa',
+  cardBorderColorHover: white,
   titleTextColor: textYellow,
   projectTextColor: textGreen,
   imageCloseButtonBg: '#fff',

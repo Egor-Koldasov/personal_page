@@ -5,10 +5,11 @@ import { themeDark } from "./dark";
 const textCyan = '#65c8c5';
 const textYellow = '#e4b715';
 const textGreen = '#5fc35c';
+const black = '#333';
 
 const basic = {
-  textColor: '#000',
-  sectionDividerColor: '#000',
+  textColor: black,
+  sectionDividerColor: black,
   bgColor: '#f5f5ee',
   scrollColor: '#ccc',
   scrollHoverColor: '#aaa',
@@ -19,7 +20,7 @@ const sectionEntry = {
   nameTextColor: textCyan,
   webDevTitleColor: textGreen,
   webDevTitleBg: basic.bgColor,
-  webDevBorderColor: '#000',
+  webDevBorderColor: black,
   stackColor: textYellow,
 };
 const sectionValues = {
@@ -34,12 +35,12 @@ const sectionValues = {
 const sectionPortfolio = {
   mainBg: basic.bgColor,
   cardBg: basic.bgColor,
-  cardBorderColor: '#333',
-  cardBorderColorHover: '#000',
+  cardBorderColor: '#555',
+  cardBorderColorHover: black,
   titleTextColor: textYellow,
   projectTextColor: textGreen,
   imageCloseButtonBg: '#fff',
-  imageCloseButtonColor: '#000',
+  imageCloseButtonColor: black,
 };
 const sectionContacts = {
   titleColor: textPurple,

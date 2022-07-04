@@ -68,7 +68,7 @@ const ImageInlineListStyled = styled.div`
   width: 100%;
   overflow-x: auto;
   gap: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: .0rem;
   ${flexSafeCenterX()}
   &::-webkit-scrollbar-thumb {
     border-radius: 12px;
@@ -204,6 +204,9 @@ export const ImageViewerStyled = styled.div`
   width: 100%;
   flex-grow: 1;
   justify-self: stretch;
+  && {
+    margin-bottom: .5rem;
+  }
 `;
 type ImageViewerProps = {
   portfolioItem: PortfolioItem;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { cn } from "../../../lib/cn";
 import { ImageViewer } from "../../lib/ImageViewer";
 import { CloseBtn } from "./CloseBtn";
-import { CardHeader } from "./SectionPortfolio";
 import { PortfolioItem } from "./portfolio";
 import { flexColumnGrow } from "../../../styles/modules/flexColumnGrow";
 import { background, text, lightAccent, strongAccent, cardBackground } from "./colors";
@@ -12,6 +11,13 @@ import { themeProp } from "../Theme/themeProp";
 import { breakpointFrom } from "../../../styles/modules/breakpointFrom";
 import { bpTablet } from "../../../styles/modules/vars";
 
+
+const CardHeader = styled.div`
+  position: relative;
+  &&& {
+    margin-bottom: .5rem;
+  }
+`;
 
 export const CardContentExtra = styled.div`
   ${flexColumnGrow()}

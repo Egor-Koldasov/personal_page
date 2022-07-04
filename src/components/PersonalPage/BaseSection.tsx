@@ -10,6 +10,9 @@ const SectionStyled = styled.section`
   min-height: 100%;
   justify-content: center;
   border-bottom: 1px solid ${themeProp('basic.sectionDividerColor')};
+  && {
+    padding: 2rem;
+  }
 `;
 
 export const BaseSection = (props: WrapperProps) => {
