@@ -124,6 +124,8 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
   ${flexColumnGrow()}
 `;
 
+const scrollThreshold = 5;
+
 type ScrollShadowProps = {
   ScrollList: ComponentType<ScrollListProps>,
   children?: ReactNode,
@@ -141,10 +143,10 @@ export const ScrollShadow = (props: ScrollShadowProps) => {
     const list = listRef.current;
     if (!list) return;
     const nextScroll = {
-      left: list.scrollLeft > 0,
-      right: (list.scrollWidth - list.clientWidth) > list.scrollLeft,
-      top: list.scrollTop > 0,
-      bottom: (list.scrollHeight - list.clientHeight) > list.scrollTop,
+      left: list.scrollLeft > scrollThreshold,
+      right: ((list.scrollWidth - list.clientWidth) - list.scrollLeft) > scrollThreshold,
+      top: list.scrollTop > scrollThreshold,
+      bottom: ((list.scrollHeight - list.clientHeight) - list.scrollTop) > scrollThreshold,
     };
     setScroll(nextScroll);
   }, [setScroll]);

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { cn } from '../../lib/cn';
+import { themeProp } from './Theme/themeProp';
 import { WrapperProps } from "./WrapperProps";
 
 const SectionStyled = styled.section`
@@ -8,6 +9,7 @@ const SectionStyled = styled.section`
   align-items: center;
   min-height: 100%;
   justify-content: center;
+  border-bottom: 1px solid ${themeProp('basic.sectionDividerColor')};
 `;
 
 export const BaseSection = (props: WrapperProps) => {

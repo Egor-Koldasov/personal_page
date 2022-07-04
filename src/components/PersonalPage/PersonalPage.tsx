@@ -1,21 +1,26 @@
 import Head from "next/head";
 import { FullScreenBox } from "./FullScreenBox";
-import { Section1 } from "./Section1";
+import { SectionEntry } from "./SectionEntry";
 import { SectionValues } from './SectionValues';
-import { Section3 } from "./Section3";
-import { SectionPortfolio } from "./Portfolio/SectionPortfolio";
+import { SectionContacts } from "./SectionContacts";
+import { SectionPortfolio } from "./SectionPortfolio/SectionPortfolio";
+import { PageThemeProvider } from "./Theme/PageThemeProvider";
+import { GlobalStyle } from "./GlobalStyle";
 
 
 export const PersonalPage = () => {
   return (
-    <FullScreenBox>
-      <Head>
-        <title>Egor Koldasov. Web Developer. React, Typescript, SQL, Node.</title>
-      </Head>
-      <Section1 />
-      <SectionValues />
-      <SectionPortfolio />
-      <Section3 />
-    </FullScreenBox>
+    <PageThemeProvider>
+      <GlobalStyle />
+      <FullScreenBox>
+        <Head>
+          <title>Egor Koldasov. Web Developer. React, Typescript, SQL, Node.</title>
+        </Head>
+        <SectionEntry />
+        <SectionValues />
+        <SectionPortfolio />
+        <SectionContacts />
+      </FullScreenBox>
+    </PageThemeProvider>
   );
 };

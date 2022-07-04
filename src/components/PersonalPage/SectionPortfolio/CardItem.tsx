@@ -8,6 +8,9 @@ import { flexColumnGrow } from "../../../styles/modules/flexColumnGrow";
 import { background, text, lightAccent, strongAccent, cardBackground } from "./colors";
 import { PropsWithChildren, useMemo } from "react";
 import { ScrollShadow, ScrollShadowStyled } from "../../lib/ScrollShadow";
+import { themeProp } from "../Theme/themeProp";
+import { breakpointFrom } from "../../../styles/modules/breakpointFrom";
+import { bpTablet } from "../../../styles/modules/vars";
 
 
 export const CardContentExtra = styled.div`
@@ -16,21 +19,22 @@ export const CardContentExtra = styled.div`
 export const CardItemStyled = styled.div`
   display: flex;
   flex-direction: column;
-  width: 18rem;
-  min-height: 15rem;
+  width: 15rem;
+  min-height: 9rem;
   max-width: 100%;
-  border: 8px solid ${lightAccent};
+  border: 8px solid ${themeProp('sectionPortfolio.cardBorderColor')};
   border-radius: 0;
   /* box-shadow: none; */
-  background-color: ${cardBackground};
+  background-color: ${themeProp('sectionPortfolio.cardBg')};
   text-align: center;
+  color: inherit;
   .title, .subtitle, .content {
-    color: ${text};
+    color: inherit;
   }
   cursor: pointer;
   transition: border-color 0.2s ease-in-out;
   &:hover {
-    border-color: ${strongAccent};
+    border-color: ${themeProp('sectionPortfolio.cardBorderColorHover')};
   }
   &.overlay {
     position: absolute;
@@ -39,28 +43,70 @@ export const CardItemStyled = styled.div`
   }
   .card-content {
     ${flexColumnGrow()}
+    padding: .5rem;
+  }
+  ${breakpointFrom(bpTablet)} {
+    width: 10rem;
+  }
+`;
+
+const ProjectName = styled.div`
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  ${breakpointFrom(bpTablet)} {
+    font-size: 1rem;
+  }
+  && {
+    /* color: ${themeProp('sectionPortfolio.projectTextColor')}; */
   }
 `;
 
 export const ShortDescription = styled.div`
-  line-height: 1.5rem;
-  min-height: 3rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  min-height: 2rem;
+  ${breakpointFrom(bpTablet)} {
+    font-size: .7rem;
+    line-height: .7rem;
+  }
+  && {
+    margin-bottom: 0;
+  }
 `;
 
-export const Description = styled.div`
+const Description = styled.div`
   text-align: left;
   max-width: 1000px;
   margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1rem;
+  ${breakpointFrom(bpTablet)} {
+    font-size: .7rem;
+    line-height: .7rem;
+  }
 `;
 
-export const CardItemScrollBox = styled.div`
+const Role = styled.div`
+  font-size: 1rem;
+  line-height: 1rem; // weird scroll fix
+  overflow: hidden;
+  ${breakpointFrom(bpTablet)} {
+    font-size: .7rem;
+    line-height: .7rem;
+  }
+  && {
+    color: ${themeProp('sectionPortfolio.projectTextColor')};
+  }
+`;
+
+const CardItemScrollBox = styled.div`
   ${flexColumnGrow()}
   overflow-y: auto;
   &::-webkit-scrollbar-thumb {
     border-radius: 12px;
-    background-color: ${lightAccent};
+    /* background-color: ${lightAccent}; */
     &:hover {
-      background-color: ${strongAccent};
+      /* background-color: ${strongAccent}; */
     }
   }
 `;
@@ -77,18 +123,18 @@ export const CardItem = ({ portfolioItem, className, active, onClose }: CardItem
         <div className="card-content">
           <CardHeader className="media">
             <div className="media-content">
-              <p className="title is-4">{portfolioItem.projectName}</p>
-              <ShortDescription className="subtitle is-5">
+              <ProjectName className="title">{portfolioItem.projectName}</ProjectName>
+              <ShortDescription className="subtitle">
                 {portfolioItem.shortDescription}
               </ShortDescription>
-              <p className="subtitle is-6">{portfolioItem.jobTitle}</p>
+              <Role className="subtitle">{portfolioItem.jobTitle}</Role>
             </div>
             <CloseBtn onClick={onClose} />
           </CardHeader>
           {active && (
             <CardContentExtra>
               {portfolioItem.images.length > 0 && <ImageViewer portfolioItem={portfolioItem} />}
-              <Description className='content is-size-5 block'>
+              <Description className='content block'>
                 {portfolioItem.description}
               </Description>
             </CardContentExtra>

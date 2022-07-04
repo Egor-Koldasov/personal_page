@@ -1,15 +1,18 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { Paths } from "../../lib/types/Path";
 import { breakpointFrom } from "../../styles/modules/breakpointFrom";
 import { bpTablet } from "../../styles/modules/vars";
 import { BaseSection } from "./BaseSection";
+import { themeProp } from "./Theme/themeProp";
+import { Theme } from "./Theme/themes";
 import { WrapperProps } from "./WrapperProps";
 
 
 const Section3Styled = styled(BaseSection)`
-  background-color: #d9e1ff;
+  background-color: ${themeProp('sectionContacts.mainBg')};
   a {
-    color: #4667ab;
+    color: ${themeProp('sectionContacts.linkColor')};
   }
   justify-content: flex-start;
   ${breakpointFrom(bpTablet)} {
@@ -18,8 +21,11 @@ const Section3Styled = styled(BaseSection)`
 `;
 const Title = styled.h3`
   text-align: center;
-  color: #424255;
-  text-transform: uppercase;
+  color: ${themeProp('sectionContacts.titleColor')};
+  font-size: 2.5rem;
+  && {
+    font-weight: bold;
+  }
 `;
 const Photo = (props: WrapperProps) => (
   <Image
@@ -52,25 +58,29 @@ const ProfileBlock = styled.div`
 const PhotoBox = styled.div`
   max-width: 300px;
   max-height: 300px;
-  border: .5rem solid #424255;
+  border: .5rem solid ${themeProp('sectionContacts.photoBorderColor')};
   padding: 0;
 `
 const PhotoText = styled.div`
-  color: #424255;
+  color: ${themeProp('sectionContacts.textColor')};
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-self: stretch;
-  padding-top: var(--block-spacing);
+  padding-top: 1rem;
   padding-bottom: 0;
+  font-size: 1rem;
   ${breakpointFrom(bpTablet)} {
     padding-top: 0;
   }
 `;
-const LinkRow = styled.div`
-  
+const LinkRow = styled.div<{num: number}>`
+  font-weight: bold;
+  a {
+    color: ${(props) => themeProp((`sectionContacts.contactTextColor` + props.num) as Paths<Theme>)(props)};
+  }
 `
-const LinkRowTop = styled(LinkRow)`
+const LinkRowTop = styled.div`
   margin-bottom: auto;
 `
 const linkMap: [string, string, string][] = [
@@ -85,11 +95,12 @@ const DesktopLinksStyled = styled.div`
   ${breakpointFrom(bpTablet)} {
     display: block;
   }
+  font-size: .8rem;
 `;
 const DesktopLinks = () => (
   <DesktopLinksStyled>
-    {linkMap.map(([name, href, text]) => (
-      <LinkRow key={name}>
+    {linkMap.map(([name, href, text], index) => (
+      <LinkRow key={name} num={index + 1}>
         {name + ': '}
         <a target="_blank" rel="noreferrer" href={href}>{text}</a>
       </LinkRow>
@@ -106,20 +117,20 @@ const MobileLinksStyled = styled.div`
 `;
 const MobileLinks = () => (
   <MobileLinksStyled>
-    {linkMap.map(([name, href]) => (
-      <LinkRow key={name}>
+    {linkMap.map(([name, href], index) => (
+      <LinkRow key={name} num={index + 1}>
         <a target="_blank" rel="noreferrer" href={href}>{name}</a>
       </LinkRow>
     ))}
   </MobileLinksStyled>
 );
-export const Section3 = () => {
+export const SectionContacts = () => {
   return (
     <Section3Styled>
-    <Title className="title is-3">My Contacts</Title>
+    <Title className="title">My Contacts</Title>
       <ProfileBlock className="columns">
         <PhotoBox className="column"><Photo /></PhotoBox>
-        <PhotoText className="column is-size-5">
+        <PhotoText className="column">
           <LinkRowTop>
             I&apos;m located at{' '}
             <a target="_blank" rel="noreferrer" href="https://goo.gl/maps/TQvh9mpMkULRNott6">Batumi, Georgia</a>

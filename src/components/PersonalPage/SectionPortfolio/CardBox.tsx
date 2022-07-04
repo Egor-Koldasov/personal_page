@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import styled from "styled-components";
 import { cn } from "../../../lib/cn";
+import { themeProp } from "../Theme/themeProp";
 import { CardItemStyled, CardItem, CardContentExtra, ShortDescription } from "./CardItem";
 import { CloseBtnStyled } from "./CloseBtn";
 import { strongAccent } from "./colors";
@@ -13,7 +14,7 @@ const CardBoxStyled = styled.li`
   justify-content: center;
   &.active {
     ${CardItemStyled}.overlay {
-      border-color: ${strongAccent};
+      border-color: ${themeProp('sectionPortfolio.cardBorderColorHover')};
       height: 100%;
       width: 100%;
       top: 0;

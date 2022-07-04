@@ -47,6 +47,19 @@ $export-vars: (
   }
 }
 
+@font-face {
+  font-family: 'Noto Sans Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/font/NotoSansMono/NotoSansMono-Regular.ttf");
+}
+@font-face {
+  font-family: 'Noto Sans Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: url("/font/NotoSansMono/NotoSansMono-Bold.ttf");
+}
+
 // body {
 //   &::after {
 //     @include arrow(#000);

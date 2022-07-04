@@ -5,14 +5,15 @@ import styled, { css } from "styled-components";
 import { useOnResize } from "../../lib/useOnResize";
 import { flexColumnGrow } from "../../styles/modules/flexColumnGrow";
 import { flexSafeCenterX } from "../../styles/modules/flexSafeCenterX";
-import { lightAccent, strongAccent } from "../PersonalPage/Portfolio/colors";
-import { PortfolioItem } from "../PersonalPage/Portfolio/portfolio";
+import { lightAccent, strongAccent } from "../PersonalPage/SectionPortfolio/colors";
+import { PortfolioItem } from "../PersonalPage/SectionPortfolio/portfolio";
+import { themeProp } from "../PersonalPage/Theme/themeProp";
 import { ScrollShadow, ScrollListProps } from "./ScrollShadow";
 
 const cssWidth = ({ width }: { width: number }) => css`width: ${width}px;`;
 export const ImageInlineStyled = styled.div<{ width: number }>`
   position: relative;
-  border: 4px solid ${lightAccent};
+  border: 4px solid ${themeProp('sectionPortfolio.cardBorderColor')};
   display: flex;
   box-sizing: content-box;
   min-height: 150px;
@@ -21,7 +22,7 @@ export const ImageInlineStyled = styled.div<{ width: number }>`
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%);
   ${cssWidth}
   &:hover {
-    border-color: ${strongAccent};
+    border-color: ${themeProp('sectionPortfolio.cardBorderColorHover')};
   }
 `;
 type ImageInlineProps = {
@@ -71,9 +72,7 @@ const ImageInlineListStyled = styled.div`
   ${flexSafeCenterX()}
   &::-webkit-scrollbar-thumb {
     border-radius: 12px;
-    background-color: ${lightAccent};
     &:hover {
-      background-color: ${strongAccent};
     }
   }
 `;
@@ -148,18 +147,19 @@ export const ModalContent = styled.div`
 `;
 
 export const ModalCloseBtn = styled.button`
-  background-color: #4DB39E;
+  background-color: ${themeProp('sectionPortfolio.imageCloseButtonBg')};
   &:hover {
-    background-color: #FEA86D;
+    background-color: ${themeProp('sectionPortfolio.imageCloseButtonBg')};
   }
-  /* &::before, &::after {
-    background-color
-  } */
+  &::before, &::after {
+    background-color: ${themeProp('sectionPortfolio.imageCloseButtonColor')};
+  }
 `;
 
 export const ModalDescription = styled.div`
   color: #fff;
-  margin: 1rem 0;
+  margin: .5rem 0;
+  font-size: .8rem;
 `;
 
 type ImageModalProps = {

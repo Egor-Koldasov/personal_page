@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { themeProp } from "./Theme/themeProp";
 
 export const FullScreenBox = styled.div`
   position: absolute;
@@ -12,12 +13,13 @@ export const FullScreenBox = styled.div`
   &::-webkit-scrollbar {
     width: 12px;
     height: 12px;
+    background-color: ${themeProp('basic.bgColor')};
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 12px;
-    background-color: #90d09e;
+    background-color: ${themeProp('basic.scrollColor')};
     &:hover {
-      background-color: #87ab97;
+      background-color: ${themeProp('basic.scrollHoverColor')};
     }
   }
 `;
