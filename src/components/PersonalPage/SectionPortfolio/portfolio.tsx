@@ -33,15 +33,11 @@ export const portfolio: PortfolioItem[] = [
     projectName: 'Iorad',
     shortDescription: 'Tutorial building tool',
     jobTitle: 'Full Stack Web Developer',
-    description: `I’ve been working as a full-stack developer with React and NodeJS. Have been building
-      the application itself, the website for it, browser extension, payment system, admin
-      system.
-      Iorad is the application for automatic building step-by-step tutorials with images and
-      descriptions on each step, the user records it like a video then they can edit it.
-      I have been building the browser extension, rewriting and upgrading the Stripe payment
-      
-      system, admin panel, optimizing slow database queries and inefficient front-end code,
-      working on multiple redesigns, adding features to the player and editor.`,
+    description: `Iorad is the application for the automatic building of step-by-step tutorials
+      with images and descriptions on each step, the user records it like a video then they can edit it.
+      I have been building the browser extension, rewriting and upgrading the Stripe payment system,
+      and admin panel, optimizing slow database queries and inefficient front-end code,
+      working on multiple redesigns, and adding features to the player and editor.`,
     images: [
       { data: ioradStepList, description: 'The tutorial player. User can visit it to play the recorded guidelines.' },
       { data: ioradLivePlayer, description: 'The "Live" player, that shows steps over the actual webpage.' },
