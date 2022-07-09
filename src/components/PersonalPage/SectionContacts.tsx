@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { Paths } from "../../lib/types/Path";
 import { breakpointFrom } from "../../styles/modules/breakpointFrom";
-import { bpTablet } from "../../styles/modules/vars";
+import { bpDesktop } from "../../styles/modules/vars";
 import { BaseSection } from "./BaseSection";
 import { themeProp } from "./Theme/themeProp";
 import { Theme } from "./Theme/themes";
@@ -15,7 +15,7 @@ const Section3Styled = styled(BaseSection)`
     color: ${themeProp('sectionContacts.linkColor')};
   }
   justify-content: flex-start;
-  ${breakpointFrom(bpTablet)} {
+  ${breakpointFrom(bpDesktop)} {
     justify-content: center;
   }
 `;
@@ -48,7 +48,7 @@ const ProfileBlock = styled.div`
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  ${breakpointFrom(bpTablet)} {
+  ${breakpointFrom(bpDesktop)} {
     flex-direction: row;
     flex-grow: 0;
   }
@@ -58,6 +58,7 @@ const ProfileBlock = styled.div`
 const PhotoBox = styled.div`
   max-width: 300px;
   max-height: 300px;
+  min-width: 150px;
   border: .5rem solid ${themeProp('sectionContacts.photoBorderColor')};
   padding: 0;
 `
@@ -65,13 +66,15 @@ const PhotoText = styled.div`
   color: ${themeProp('sectionContacts.textColor')};
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-self: stretch;
   padding-top: 1rem;
   padding-bottom: 0;
   font-size: 1rem;
-  ${breakpointFrom(bpTablet)} {
+  max-width: 300px;
+  ${breakpointFrom(bpDesktop)} {
     padding-top: 0;
+    max-width: none;
+    justify-content: flex-end;
+    align-self: stretch;
   }
 `;
 const LinkRow = styled.div<{num: number}>`
@@ -92,7 +95,7 @@ const linkMap: [string, string, string][] = [
 
 const DesktopLinksStyled = styled.div`
   display: none;
-  ${breakpointFrom(bpTablet)} {
+  ${breakpointFrom(bpDesktop)} {
     display: block;
   }
   font-size: .8rem;
@@ -111,7 +114,7 @@ const MobileLinksStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0 var(--block-spacing);
-  ${breakpointFrom(bpTablet)} {
+  ${breakpointFrom(bpDesktop)} {
     display: none;
   }
 `;

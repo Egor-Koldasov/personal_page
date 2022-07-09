@@ -32,6 +32,7 @@ const ListStyled = styled.ul`
   overflow-y: auto; */
   justify-content: center;
   align-items: center;
+  align-content: center;
 
   flex-wrap: wrap;
   &.expand {
