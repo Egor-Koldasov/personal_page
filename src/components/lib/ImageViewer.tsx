@@ -1,13 +1,14 @@
 import composeRefs from "@seznam/compose-react-refs";
 import Image, { StaticImageData } from "next/image";
 import { forwardRef, PropsWithChildren, Ref, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import styled, { css } from "styled-components";
+import styled, { css, useTheme } from "styled-components";
 import { useOnResize } from "../../lib/useOnResize";
 import { flexColumnGrow } from "../../styles/modules/flexColumnGrow";
 import { flexSafeCenterX } from "../../styles/modules/flexSafeCenterX";
 import { lightAccent, strongAccent } from "../PersonalPage/SectionPortfolio/colors";
 import { PortfolioItem } from "../PersonalPage/SectionPortfolio/portfolio";
 import { themeProp } from "../PersonalPage/Theme/themeProp";
+import { Theme } from "../PersonalPage/Theme/themes";
 import { ScrollShadow, ScrollListProps } from "./ScrollShadow";
 
 const cssWidth = ({ width }: { width: number }) => css`width: ${width}px;`;
@@ -214,9 +215,10 @@ type ImageViewerProps = {
 export const ImageViewer = (props: ImageViewerProps) => {
   const [openImageIndex, setOpenImageIndex] = useState<number | null>(null);
   const { portfolioItem } = props;
+  const theme = useTheme() as Theme;
   return (
     <ImageViewerStyled className="block is-clipped">
-      <ScrollShadow ScrollList={ImageInlineList}>
+      <ScrollShadow ScrollList={ImageInlineList} shadowColor={theme.sectionPortfolio.scrollShadowColor}>
         {portfolioItem.images.map(({ data }, index) => (
           <ImageInline key={index} onOpen={() => setOpenImageIndex(index)} src={data} />
         ))}

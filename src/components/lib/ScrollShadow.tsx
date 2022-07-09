@@ -1,8 +1,8 @@
 import { ComponentType, ReactNode, Ref, UIEventHandler, useCallback, useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { flexColumnGrow } from "../../styles/modules/flexColumnGrow";
+import { RGBTulpe } from "../../lib/types/RGBTulpe";
 
-type RGBTulpe = [number, number, number];
 export type ScrollShadowBox = {
   scrollLeft?: boolean,
   scrollRight?: boolean,
@@ -19,7 +19,9 @@ export type ScrollListProps = {
 const makeColor = ([r, g, b]: RGBTulpe, a: number = 100) =>
   css`rgba(${r} ${g} ${b} / ${a}%)`;
 
-const shadowSize = '20px';
+const shadowSize = '15px';
+const blurSize = '5px';
+const ScrollShadowSpan = styled.span``;
 export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
   display: flex;
   width: 100%;
@@ -28,15 +30,17 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
   & > div {
     flex-grow: 1;
   }
-  & > div > .scrollShadow {
+  & > div > ${ScrollShadowSpan} {
     position: absolute;
     transition: transform 100ms;
     z-index: 1;
+    pointer-events: none;
+    filter: blur(${blurSize});
     &.left {
       left: 0;
       top: 0;
       bottom: 0;
-      transform: translateX(-100%);
+      transform: translateX(calc(-100% - ${blurSize}));
       width: ${shadowSize};
       ${({ shadowColor = [255, 255, 255] }) => css`
         background:
@@ -53,7 +57,7 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
       right: 0;
       top: 0;
       bottom: 0;
-      transform: translateX(100%);
+      transform: translateX(calc(100% + ${blurSize}));
       width: ${shadowSize};
       ${({ shadowColor = [255, 255, 255] }) => css`
         background:
@@ -70,7 +74,7 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
       right: 0;
       left: 0;
       bottom: 0;
-      transform: translateY(100%);
+      transform: translateY(calc(100% + ${blurSize}));
       height: ${shadowSize};
       ${({ shadowColor = [255, 255, 255] }) => css`
         background:
@@ -87,7 +91,7 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
       right: 0;
       left: 0;
       top: 0;
-      transform: translateY(-100%);
+      transform: translateY(calc(-100% - ${blurSize}));
       height: ${shadowSize};
       ${({ shadowColor = [255, 255, 255] }) => css`
         background:
@@ -162,10 +166,10 @@ export const ScrollShadow = (props: ScrollShadowProps) => {
       shadowColor={props.shadowColor}
     >
       <props.ScrollList onScroll={onScroll} ref={listRef}>
-        <span className="scrollShadow left" />
-        <span className="scrollShadow right" />
-        <span className="scrollShadow top" />
-        <span className="scrollShadow bottom" />
+        <ScrollShadowSpan className="scrollShadow left" />
+        <ScrollShadowSpan className="scrollShadow right" />
+        <ScrollShadowSpan className="scrollShadow top" />
+        <ScrollShadowSpan className="scrollShadow bottom" />
         {props.children}
       </props.ScrollList>
     </ScrollShadowStyled>

@@ -1,3 +1,4 @@
+import { RGBTulpe } from "../../../../lib/types/RGBTulpe";
 import { textBlue, textPurple, textRed } from "../../../../styles/modules/colors";
 import { Theme } from "../themes";
 import { themeDark } from "./dark";
@@ -41,6 +42,7 @@ const sectionPortfolio = {
   projectTextColor: textGreen,
   imageCloseButtonBg: '#fff',
   imageCloseButtonColor: black,
+  scrollShadowColor: [50, 50, 50] as RGBTulpe,
 };
 const sectionContacts = {
   titleColor: textPurple,

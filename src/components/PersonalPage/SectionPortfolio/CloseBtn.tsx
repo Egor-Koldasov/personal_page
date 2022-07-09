@@ -6,14 +6,16 @@ import { strongAccent } from "./colors";
 
 export const CloseBtnStyled = styled.div`
   position: absolute;
-  right: 0;
-  top: 0;
+  right: .5rem;
+  top: .5rem;
   font-size: 1rem;
-
-	width: 1rem; height: 1rem;
+	width: 32px;
+	height: 32px;
 	border-radius: 50%;
 	text-indent: 100%;
 	cursor: pointer;
+	background-color: ${themeProp('sectionPortfolio.cardBg')};
+	z-index: 1;
 	
 	&:focus {
 		outline: solid 0 transparent;

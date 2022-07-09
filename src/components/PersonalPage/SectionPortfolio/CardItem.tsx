@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { cn } from "../../../lib/cn";
 import { ImageViewer } from "../../lib/ImageViewer";
 import { CloseBtn } from "./CloseBtn";
@@ -10,6 +10,7 @@ import { ScrollShadow, ScrollShadowStyled } from "../../lib/ScrollShadow";
 import { themeProp } from "../Theme/themeProp";
 import { breakpointFrom } from "../../../styles/modules/breakpointFrom";
 import { bpTablet } from "../../../styles/modules/vars";
+import { Theme } from "../Theme/themes";
 
 
 const CardHeader = styled.div`
@@ -23,6 +24,7 @@ export const CardContentExtra = styled.div`
   ${flexColumnGrow()}
 `;
 export const CardItemStyled = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 15rem;
@@ -123,9 +125,10 @@ type CardItemProps = {
   onClose?: () => void;
 };
 export const CardItem = ({ portfolioItem, className, active, onClose }: CardItemProps) => {
+  const theme = useTheme() as Theme;
   return (
     <CardItemStyled className={cn("card", className)}>
-      <ScrollShadow ScrollList={CardItemScrollBox}>
+      <ScrollShadow ScrollList={CardItemScrollBox} shadowColor={theme.sectionPortfolio.scrollShadowColor}>
         <div className="card-content">
           <CardHeader className="media">
             <div className="media-content">
@@ -135,7 +138,6 @@ export const CardItem = ({ portfolioItem, className, active, onClose }: CardItem
               </ShortDescription>
               <Role className="subtitle">{portfolioItem.jobTitle}</Role>
             </div>
-            <CloseBtn onClick={onClose} />
           </CardHeader>
           {active && (
             <CardContentExtra>
@@ -147,6 +149,7 @@ export const CardItem = ({ portfolioItem, className, active, onClose }: CardItem
           )}
         </div>
       </ScrollShadow>
+      <CloseBtn onClick={onClose} />
     </CardItemStyled>
   );
 };
