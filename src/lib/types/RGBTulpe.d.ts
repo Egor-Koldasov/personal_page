@@ -1,1 +1,1 @@
-export type RGBTulpe = [number, number, number];
+export type RGBTulpe = [number, number, number]

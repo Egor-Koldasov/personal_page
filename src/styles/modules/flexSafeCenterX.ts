@@ -1,12 +1,12 @@
-import { css } from "styled-components";
+import { css } from "styled-components"
 
 export const flexSafeCenterX = () => css`
   & > * {
     &:first-child {
-    margin-left: auto;
+      margin-left: auto;
     }
     &:last-child {
       margin-right: auto;
     }
   }
-`;
+`

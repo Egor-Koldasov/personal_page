@@ -1,28 +1,33 @@
-import styled, { useTheme } from "styled-components";
-import { cn } from "../../../lib/cn";
-import { ImageViewer } from "../../lib/ImageViewer";
-import { CloseBtn } from "./CloseBtn";
-import { PortfolioItem } from "./portfolio";
-import { flexColumnGrow } from "../../../styles/modules/flexColumnGrow";
-import { background, text, lightAccent, strongAccent, cardBackground } from "./colors";
-import { PropsWithChildren, useMemo } from "react";
-import { ScrollShadow, ScrollShadowStyled } from "../../lib/ScrollShadow";
-import { themeProp } from "../Theme/themeProp";
-import { breakpointFrom } from "../../../styles/modules/breakpointFrom";
-import { bpTablet } from "../../../styles/modules/vars";
-import { Theme } from "../Theme/themes";
-
+import styled, { useTheme } from "styled-components"
+import { cn } from "../../../lib/cn"
+import { ImageViewer } from "../../lib/ImageViewer"
+import { CloseBtn } from "./CloseBtn"
+import { PortfolioItem } from "./portfolio"
+import { flexColumnGrow } from "../../../styles/modules/flexColumnGrow"
+import {
+  background,
+  text,
+  lightAccent,
+  strongAccent,
+  cardBackground,
+} from "./colors"
+import { PropsWithChildren, useMemo } from "react"
+import { ScrollShadow, ScrollShadowStyled } from "../../lib/ScrollShadow"
+import { theme, themeProp } from "../Theme/themeProp"
+import { breakpointFrom } from "../../../styles/modules/breakpointFrom"
+import { bpTablet } from "../../../styles/modules/vars"
+import { Theme } from "../Theme/themes"
 
 const CardHeader = styled.div`
   position: relative;
   &&& {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
-`;
+`
 
 export const CardContentExtra = styled.div`
   ${flexColumnGrow()}
-`;
+`
 export const CardItemStyled = styled.div`
   position: relative;
   display: flex;
@@ -30,19 +35,21 @@ export const CardItemStyled = styled.div`
   width: 15rem;
   min-height: 9rem;
   max-width: 100%;
-  border: 8px solid ${themeProp('sectionPortfolio.cardBorderColor')};
+  border: 8px solid ${theme((t) => t.sectionPortfolio.cardBorderColor)};
   border-radius: 0;
   /* box-shadow: none; */
-  background-color: ${themeProp('sectionPortfolio.cardBg')};
+  background-color: ${theme((t) => t.sectionPortfolio.cardBg)};
   text-align: center;
   color: inherit;
-  .title, .subtitle, .content {
+  .title,
+  .subtitle,
+  .content {
     color: inherit;
   }
   cursor: pointer;
   transition: border-color 0.2s ease-in-out;
   &:hover {
-    border-color: ${themeProp('sectionPortfolio.cardBorderColorHover')};
+    border-color: ${theme((t) => t.sectionPortfolio.cardBorderColorHover)};
   }
   &.overlay {
     position: absolute;
@@ -56,7 +63,7 @@ export const CardItemStyled = styled.div`
   ${breakpointFrom(bpTablet)} {
     width: 10rem;
   }
-`;
+`
 
 const ProjectName = styled.div`
   font-size: 1.5rem;
@@ -65,22 +72,22 @@ const ProjectName = styled.div`
     font-size: 1rem;
   }
   && {
-    /* color: ${themeProp('sectionPortfolio.projectTextColor')}; */
+    /* color: ${theme((t) => t.sectionPortfolio.projectTextColor)}; */
   }
-`;
+`
 
 export const ShortDescription = styled.div`
   font-size: 1rem;
   line-height: 1rem;
   min-height: 2rem;
   ${breakpointFrom(bpTablet)} {
-    font-size: .7rem;
-    line-height: .7rem;
+    font-size: 0.7rem;
+    line-height: 0.7rem;
   }
   && {
     margin-bottom: 0;
   }
-`;
+`
 
 const Description = styled.div`
   text-align: left;
@@ -89,23 +96,23 @@ const Description = styled.div`
   font-size: 1rem;
   line-height: 1rem;
   ${breakpointFrom(bpTablet)} {
-    font-size: .7rem;
-    line-height: .7rem;
+    font-size: 0.7rem;
+    line-height: 0.7rem;
   }
-`;
+`
 
 const Role = styled.div`
   font-size: 1rem;
   line-height: 1rem; // weird scroll fix
   overflow: hidden;
   ${breakpointFrom(bpTablet)} {
-    font-size: .7rem;
-    line-height: .7rem;
+    font-size: 0.7rem;
+    line-height: 0.7rem;
   }
   && {
-    color: ${themeProp('sectionPortfolio.projectTextColor')};
+    color: ${theme((t) => t.sectionPortfolio.projectTextColor)};
   }
-`;
+`
 
 const CardItemScrollBox = styled.div`
   ${flexColumnGrow()}
@@ -117,22 +124,32 @@ const CardItemScrollBox = styled.div`
       /* background-color: ${strongAccent}; */
     }
   }
-`;
+`
 type CardItemProps = {
-  portfolioItem: PortfolioItem;
-  className?: string;
-  active?: boolean;
-  onClose?: () => void;
-};
-export const CardItem = ({ portfolioItem, className, active, onClose }: CardItemProps) => {
-  const theme = useTheme() as Theme;
+  portfolioItem: PortfolioItem
+  className?: string
+  active?: boolean
+  onClose?: () => void
+}
+export const CardItem = ({
+  portfolioItem,
+  className,
+  active,
+  onClose,
+}: CardItemProps) => {
+  const theme = useTheme() as Theme
   return (
     <CardItemStyled className={cn("card", className)}>
-      <ScrollShadow ScrollList={CardItemScrollBox} shadowColor={theme.sectionPortfolio.scrollShadowColor}>
+      <ScrollShadow
+        ScrollList={CardItemScrollBox}
+        shadowColor={theme.sectionPortfolio.scrollShadowColor}
+      >
         <div className="card-content">
           <CardHeader className="media">
             <div className="media-content">
-              <ProjectName className="title">{portfolioItem.projectName}</ProjectName>
+              <ProjectName className="title">
+                {portfolioItem.projectName}
+              </ProjectName>
               <ShortDescription className="subtitle">
                 {portfolioItem.shortDescription}
               </ShortDescription>
@@ -141,8 +158,10 @@ export const CardItem = ({ portfolioItem, className, active, onClose }: CardItem
           </CardHeader>
           {active && (
             <CardContentExtra>
-              {portfolioItem.images.length > 0 && <ImageViewer portfolioItem={portfolioItem} />}
-              <Description className='content block'>
+              {portfolioItem.images.length > 0 && (
+                <ImageViewer portfolioItem={portfolioItem} />
+              )}
+              <Description className="content block">
                 {portfolioItem.description}
               </Description>
             </CardContentExtra>
@@ -151,5 +170,5 @@ export const CardItem = ({ portfolioItem, className, active, onClose }: CardItem
       </ScrollShadow>
       <CloseBtn onClick={onClose} />
     </CardItemStyled>
-  );
-};
+  )
+}

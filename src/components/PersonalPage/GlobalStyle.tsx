@@ -1,7 +1,7 @@
-import { createGlobalStyle } from "styled-components";
-import { breakpointFrom } from "../../styles/modules/breakpointFrom";
-import { bpTablet } from "../../styles/modules/vars";
-import { themeProp } from "./Theme/themeProp";
+import { createGlobalStyle } from "styled-components"
+import { breakpointFrom } from "../../styles/modules/breakpointFrom"
+import { bpTablet } from "../../styles/modules/vars"
+import { theme, themeProp } from "./Theme/themeProp"
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -12,8 +12,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: "Noto Sans Mono", monospace;
-    color: ${themeProp('basic.textColor')};
-    text-shadow: ${themeProp('basic.textShadow')};
+    color: ${theme((t) => t.basic.textColor)};
+    text-shadow: ${theme((t) => t.basic.textShadow)};
   }
   * {
     &::-webkit-scrollbar {
@@ -24,10 +24,10 @@ export const GlobalStyle = createGlobalStyle`
 
     &::-webkit-scrollbar-thumb {
       border-radius: 4px;
-      background-color: ${themeProp('basic.scrollColor')};
+      background-color: ${theme((t) => t.basic.scrollColor)};
       &:hover {
-        background-color: ${themeProp('basic.scrollHoverColor')};
+        background-color: ${theme((t) => t.basic.scrollHoverColor)};
       }
     }
   }
-`;
+`
