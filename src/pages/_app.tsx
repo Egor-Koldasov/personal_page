@@ -5,7 +5,7 @@ import { LoadingCat } from "../components/CatLoading/CatLoading"
 import localFont from "next/font/local"
 
 const int = setInterval(() => {
-  if (!document) return
+  if (typeof document === "undefined") return
   console.log("document.fonts.status", document.fonts.status)
 }, 50)
 
