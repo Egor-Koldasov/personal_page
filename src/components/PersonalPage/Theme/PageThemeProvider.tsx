@@ -60,6 +60,7 @@ const ThemeSwitch = (props: ThemeSwitchProps) => {
           height={32}
           src="/icons/sun.png"
           alt=""
+          priority
         />
       </span>
       <span className="light">
@@ -69,6 +70,7 @@ const ThemeSwitch = (props: ThemeSwitchProps) => {
           height={32}
           src="/icons/moon.png"
           alt=""
+          priority
         />
       </span>
       {/* {props.nextTheme} */}
