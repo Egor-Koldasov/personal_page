@@ -13,9 +13,7 @@ export const PersonalPage = () => {
       <GlobalStyle />
       <FullScreenBox id="full-screen-box">
         <Head>
-          <title>
-            Egor Koldasov. Web Developer. React, Typescript, SQL, Node.
-          </title>
+          <title>Egor Koldasov | Web Developer | React, TypeScript, Go</title>
         </Head>
         <SectionEntry />
         <SectionValues />
