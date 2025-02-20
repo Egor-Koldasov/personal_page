@@ -15,7 +15,7 @@ const black = "#333"
 const basic = {
   textColor: black,
   sectionDividerColor: black,
-  bgColor: "#f5f5ee",
+  bgColor: "#fbfbf8",
   scrollColor: "#ccc",
   scrollHoverColor: "#aaa",
   textShadow: "1px 1px 6px #0000000f",
@@ -23,23 +23,27 @@ const basic = {
 const sectionEntry = {
   mainBg: basic.bgColor,
   nameTextColor: textCyan,
-  webDevTitleColor: textGreen,
+  webDevTitleColor: "inherit",
   webDevTitleBg: basic.bgColor,
   webDevBorderColor: black,
   stackColor: textYellow,
 }
 const sectionValues = {
   mainBg: basic.bgColor,
-  cardBg: "#f9f9f3",
+  cardBg: "#e7e7e1",
   titleTextColor: textBlue,
   textColor: basic.textColor,
-  accentTextColor1: textPurple,
+  accentTextColor1: textGreen,
   accentTextColor2: textRed,
-  accentTextColor3: textYellow,
+  accentTextColor3: textBlue,
+  accentTextColor4: textPurple,
+  accentTextColor5: textYellow,
+  accentTextColor6: textCyan,
+  borderColor: "transparent",
 }
 const sectionPortfolio = {
   mainBg: basic.bgColor,
-  cardBg: basic.bgColor,
+  cardBg: sectionValues.cardBg,
   cardBorderColor: "#555",
   cardBorderColorHover: black,
   titleTextColor: textYellow,

@@ -10,10 +10,11 @@ const SectionValuesStyled = styled(BaseSection)`
   background-color: ${theme((t) => t.sectionValues.mainBg)};
 `
 const ListElementStyled = styled.li`
-  background-color: ${theme((t) => t.sectionValues.cardBg)};
+  border: 1px solid ${theme((t) => t.sectionValues.borderColor)};
   color: ${theme((t) => t.sectionValues.textColor)};
-  font-weight: bold;
-  font-size: 1.5rem;
+  background-color: transparent;
+  /* font-weight: bold; */
+  /* font-size: 1.5rem; */
   line-height: 1.5rem;
   .card-content {
     padding: 1rem;
@@ -22,28 +23,34 @@ const ListElementStyled = styled.li`
     font-size: 1rem;
     line-height: 1rem;
   }
+  box-shadow: none;
 `
 export const ListStyled = styled.ul`
+  background-color: ${theme((t) => t.sectionValues.cardBg)};
   display: flex;
   flex-direction: column;
-  gap: var(--block-spacing);
+  gap: 8px;
+  padding: 16px;
   width: 30rem;
   max-width: 100%;
+  box-shadow: none;
+  ${breakpointFrom(bpTablet)} {
+    padding: 32px;
+    gap: 16px;
+  }
 `
 const Title = styled.h3`
   text-align: center;
-  color: ${theme((t) => t.sectionValues.titleTextColor)};
+  /* color: ${theme((t) => t.sectionValues.titleTextColor)}; */
   /* text-transform: uppercase; */
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   && {
     font-weight: bold;
   }
 `
 const ListElement = (props: WrapperProps) => (
-  <ListElementStyled className={cn(props.className, "card")}>
-    <div className="card-content">
-      <div className="content">{props.children}</div>
-    </div>
+  <ListElementStyled className={cn(props.className, "")}>
+    <div className="content">• {props.children}</div>
   </ListElementStyled>
 )
 
@@ -56,21 +63,45 @@ const Accent2 = styled.span`
 const Accent3 = styled.span`
   color: ${theme((t) => t.sectionValues.accentTextColor3)};
 `
+const Accent4 = styled.span`
+  color: ${theme((t) => t.sectionValues.accentTextColor4)};
+`
+const Accent5 = styled.span`
+  font-style: bold;
+  color: ${theme((t) => t.sectionValues.accentTextColor5)};
+`
+const Accent6 = styled.span`
+  color: ${theme((t) => t.sectionValues.accentTextColor6)};
+`
 
 export const SectionValues = () => (
   <SectionValuesStyled className="">
-    <Title className="title">My Values</Title>
-    <ListStyled className="has-text-light">
+    <Title className="title">Professional summary</Title>
+    <ListStyled className="has-text-light card">
       <ListElement>
-        Readable, modular code with a focus on <Accent1>reusability</Accent1>.
+        <Accent1>Product-Oriented Full-Stack Developer</Accent1> experienced in
+        small, fast-paced startup teams.
       </ListElement>
       <ListElement>
-        Thorough <Accent2>test coverage</Accent2> for better team cooperation
-        and safer releases.
+        Proven <Accent2>10+ years</Accent2> in contractor-based roles,
+        delivering <Accent2>end-to-end solutions</Accent2> including
+        architecture, back-end and front-end.
       </ListElement>
       <ListElement>
-        <Accent3>Optimization</Accent3>. Scalable solutions that handle
-        resources efficiently even when the project usage grows.
+        Skilled at <Accent3>rapid iteration</Accent3>, adapting to minimal
+        oversight while aligning on core product goals.
+      </ListElement>
+      <ListElement>
+        <Accent4>Proactive communicator:</Accent4> raise concerns, share
+        technical insights, and mentor peers.
+      </ListElement>
+      <ListElement>
+        <Accent5>Unstoppable experimenter</Accent5> who consistently overcomes
+        technical challenges.
+      </ListElement>
+      <ListElement>
+        Open to <Accent6>formal leadership opportunities</Accent6>; adept at
+        balancing team collaboration with hands-on coding.
       </ListElement>
     </ListStyled>
   </SectionValuesStyled>

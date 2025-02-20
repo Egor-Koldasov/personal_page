@@ -10,7 +10,7 @@ import {
   textYellow,
 } from "../../../../styles/modules/colors"
 
-const white = "#ddd"
+const white = "#e1e4e8"
 const basic = {
   textColor: white,
   sectionDividerColor: white,
@@ -22,7 +22,7 @@ const basic = {
 const sectionEntry = {
   mainBg: basic.bgColor,
   nameTextColor: textCyan,
-  webDevTitleColor: textGreen,
+  webDevTitleColor: "inherit",
   webDevTitleBg: basic.bgColor,
   webDevBorderColor: white,
   stackColor: textYellow,
@@ -32,13 +32,17 @@ const sectionValues = {
   cardBg: bgGreyDark,
   titleTextColor: textBlue,
   textColor: basic.textColor,
-  accentTextColor1: textPurple,
+  accentTextColor1: textGreen,
   accentTextColor2: textRed,
-  accentTextColor3: textYellow,
+  accentTextColor3: textBlue,
+  accentTextColor4: textPurple,
+  accentTextColor5: textYellow,
+  accentTextColor6: textCyan,
+  borderColor: "transparent",
 }
 const sectionPortfolio = {
   mainBg: basic.bgColor,
-  cardBg: basic.bgColor,
+  cardBg: sectionValues.cardBg,
   cardBorderColor: "#aaa",
   cardBorderColorHover: white,
   titleTextColor: textYellow,

@@ -11,7 +11,7 @@ export const PersonalPage = () => {
   return (
     <PageThemeProvider>
       <GlobalStyle />
-      <FullScreenBox>
+      <FullScreenBox id="full-screen-box">
         <Head>
           <title>
             Egor Koldasov. Web Developer. React, Typescript, SQL, Node.

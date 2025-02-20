@@ -21,7 +21,7 @@ const saveTheme = (name: ThemeName) => {
   }
 }
 export const ThemeSwitchStyled = styled.div<{ nextThemeName: ThemeName }>`
-  position: fixed;
+  position: absolute;
   z-index: 1;
   top: 10px;
   right: 30px;
@@ -55,7 +55,7 @@ const ThemeSwitch = (props: ThemeSwitchProps) => {
     >
       <span className="dark">
         <Image
-          layout="fixed"
+          // layout="fixed"
           width={32}
           height={32}
           src="/icons/sun.png"
@@ -65,7 +65,7 @@ const ThemeSwitch = (props: ThemeSwitchProps) => {
       </span>
       <span className="light">
         <Image
-          layout="fixed"
+          // layout="fixed"
           width={32}
           height={32}
           src="/icons/moon.png"
@@ -80,6 +80,7 @@ const ThemeSwitch = (props: ThemeSwitchProps) => {
 
 export const PageThemeProvider = (props: PropsWithChildren) => {
   const [theme, setTheme] = useState<Theme>(themeDark)
+  const [themeLoaded, setThemeLoaded] = useState<boolean>(false)
   const onSwitch = useCallback(() => {
     const setAndSaveTheme = (theme: Theme) => {
       setTheme(theme)
@@ -90,7 +91,9 @@ export const PageThemeProvider = (props: PropsWithChildren) => {
   }, [theme, setTheme])
   useEffect(() => {
     setTheme(themes[loadTheme()])
+    setThemeLoaded(true)
   }, [])
+  if (!themeLoaded) return null
   return (
     <ThemeProvider theme={theme}>
       <ThemeSwitch onSwitch={onSwitch} nextThemeName={theme.name} />
