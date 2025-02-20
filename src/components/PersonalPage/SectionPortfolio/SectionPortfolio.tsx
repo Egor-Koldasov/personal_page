@@ -2,10 +2,9 @@ import { useState } from "react"
 import styled from "styled-components"
 import { cn } from "../../../lib/cn"
 import { BaseSection } from "../BaseSection"
-import { theme, themeProp } from "../Theme/themeProp"
+import { theme } from "../Theme/themeProp"
 import { CardBox } from "./CardBox"
-import { background, text, lightAccent } from "./colors"
-import { portfolio, portfolioItems } from "./portfolio"
+import { portfolioItems } from "./portfolio"
 
 const SectionPortfolioStyled = styled(BaseSection)`
   background-color: ${theme((t) => t.sectionPortfolio.mainBg)};
