@@ -5,7 +5,7 @@ import { BaseSection } from "../BaseSection"
 import { theme, themeProp } from "../Theme/themeProp"
 import { CardBox } from "./CardBox"
 import { background, text, lightAccent } from "./colors"
-import { portfolio } from "./portfolio"
+import { portfolio, portfolioItems } from "./portfolio"
 
 const SectionPortfolioStyled = styled(BaseSection)`
   background-color: ${theme((t) => t.sectionPortfolio.mainBg)};
@@ -14,8 +14,8 @@ const SectionPortfolioStyled = styled(BaseSection)`
 
 const Title = styled.h3`
   text-align: center;
-  color: ${theme((t) => t.sectionPortfolio.titleTextColor)};
-  font-size: 2.5rem;
+  /* color: ${theme((t) => t.sectionPortfolio.titleTextColor)}; */
+  font-size: 1.5rem;
   && {
     font-weight: bold;
   }
@@ -46,7 +46,7 @@ export const SectionPortfolio = () => {
     <SectionPortfolioStyled>
       <Title className="title">My Experience</Title>
       <ListStyled className={cn({ expand: !!activeItem })}>
-        {portfolio.map((portfolioItem) => (
+        {portfolioItems.map((portfolioItem) => (
           <CardBox
             key={portfolioItem.projectName}
             {...{ portfolioItem, activeItem, setActiveItem }}

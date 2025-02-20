@@ -5,9 +5,9 @@ import { theme, themeProp } from "./Theme/themeProp"
 
 export const GlobalStyle = createGlobalStyle`
   html {
-    font-size: 16px;
+    font-size: 12px;
     ${breakpointFrom(bpTablet)} {
-      font-size: 32px;
+      font-size: 24px;
     }
   }
   body {
@@ -29,5 +29,8 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${theme((t) => t.basic.scrollHoverColor)};
       }
     }
+  }
+  .title {
+    color: inherit;
   }
 `

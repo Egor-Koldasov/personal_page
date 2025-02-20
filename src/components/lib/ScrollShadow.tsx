@@ -30,7 +30,7 @@ const makeColor = ([r, g, b]: RGBTulpe, a: number = 100) =>
 
 const shadowSize = "15px"
 const blurSize = "5px"
-const ScrollShadowSpan = styled.span``
+export const ScrollShadowSpan = styled.span``
 export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
   display: flex;
   width: 100%;
@@ -45,6 +45,7 @@ export const ScrollShadowStyled = styled.div<ScrollShadowBox>`
     z-index: 1;
     pointer-events: none;
     filter: blur(${blurSize});
+    background: transparent !important;
     &.left {
       left: 0;
       top: 0;

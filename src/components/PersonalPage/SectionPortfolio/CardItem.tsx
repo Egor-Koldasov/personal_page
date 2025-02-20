@@ -21,12 +21,19 @@ import { Theme } from "../Theme/themes"
 const CardHeader = styled.div`
   position: relative;
   &&& {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
+  }
+  .media-content {
+    overflow: clip;
   }
 `
 
 export const CardContentExtra = styled.div`
   ${flexColumnGrow()}
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `
 export const CardItemStyled = styled.div`
   position: relative;
@@ -35,9 +42,9 @@ export const CardItemStyled = styled.div`
   width: 15rem;
   min-height: 9rem;
   max-width: 100%;
-  border: 8px solid ${theme((t) => t.sectionPortfolio.cardBorderColor)};
-  border-radius: 0;
-  /* box-shadow: none; */
+  /* border: 8px solid ${theme((t) => t.sectionPortfolio.cardBorderColor)}; */
+  /* border-radius: 0; */
+  box-shadow: none;
   background-color: ${theme((t) => t.sectionPortfolio.cardBg)};
   text-align: center;
   color: inherit;
@@ -59,9 +66,19 @@ export const CardItemStyled = styled.div`
   .card-content {
     ${flexColumnGrow()}
     padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   ${breakpointFrom(bpTablet)} {
     width: 10rem;
+    .card-content {
+      padding: 2rem;
+    }
+  }
+  ${breakpointFrom(bpTablet)} {
+    font-size: 0.8rem;
+    line-height: 0.8rem;
   }
 `
 
@@ -93,12 +110,12 @@ const Description = styled.div`
   text-align: left;
   max-width: 1000px;
   margin: 0 auto;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   line-height: 1rem;
-  ${breakpointFrom(bpTablet)} {
+  /* ${breakpointFrom(bpTablet)} {
     font-size: 0.7rem;
     line-height: 0.7rem;
-  }
+  } */
 `
 
 const Role = styled.div`
@@ -125,6 +142,17 @@ const CardItemScrollBox = styled.div`
     }
   }
 `
+
+const KeyPointList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`
+const KeyPointItem = styled.li``
+const TechStackBox = styled.div`
+  font-style: italic;
+`
+
 type CardItemProps = {
   portfolioItem: PortfolioItem
   className?: string
@@ -153,7 +181,7 @@ export const CardItem = ({
               <ShortDescription className="subtitle">
                 {portfolioItem.shortDescription}
               </ShortDescription>
-              <Role className="subtitle">{portfolioItem.jobTitle}</Role>
+              {/* <Role className="subtitle">{portfolioItem.jobTitle}</Role> */}
             </div>
           </CardHeader>
           {active && (
@@ -161,9 +189,15 @@ export const CardItem = ({
               {portfolioItem.images.length > 0 && (
                 <ImageViewer portfolioItem={portfolioItem} />
               )}
-              <Description className="content block">
-                {portfolioItem.description}
-              </Description>
+              <Description>{portfolioItem.description}</Description>
+              <KeyPointList>
+                {portfolioItem.keyPoints.map((keyPoint, i) => (
+                  <KeyPointItem key={i}>• {keyPoint}</KeyPointItem>
+                ))}
+              </KeyPointList>
+              <TechStackBox>
+                <span>Tech Stack:</span> {portfolioItem.techStack.join(", ")}
+              </TechStackBox>
             </CardContentExtra>
           )}
         </div>

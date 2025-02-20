@@ -3,6 +3,7 @@
 // }
 html {
   overflow: hidden;
+  --bg: hsl(190deg 20% 10%);
 }
 $export-colors: (
   purple: $purple,
@@ -57,3 +58,8 @@ $export-vars: (
 //     top: auto;
 //   }
 // }
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}

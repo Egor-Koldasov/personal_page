@@ -22,8 +22,8 @@ const Section3Styled = styled(BaseSection)`
 `
 const Title = styled.h3`
   text-align: center;
-  color: ${theme((t) => t.sectionContacts.titleColor)};
-  font-size: 2.5rem;
+  /* color: ${theme((t) => t.sectionContacts.titleColor)}; */
+  font-size: 1.5rem;
   && {
     font-weight: bold;
   }
@@ -57,11 +57,13 @@ const ProfileBlock = styled.div`
   /* background-color: #ddedec; */
 `
 const PhotoBox = styled.div`
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 200px;
+  max-height: 200px;
   min-width: 150px;
-  border: 0.5rem solid ${theme((t) => t.sectionContacts.photoBorderColor)};
+  border: 6px solid ${theme((t) => t.sectionContacts.photoBorderColor)};
   padding: 0;
+  border-radius: 50%;
+  overflow: clip;
 `
 const PhotoText = styled.div`
   color: ${theme((t) => t.sectionContacts.textColor)};
@@ -70,7 +72,7 @@ const PhotoText = styled.div`
   padding-top: 1rem;
   padding-bottom: 0;
   font-size: 1rem;
-  max-width: 300px;
+  max-width: 700px;
   ${breakpointFrom(bpDesktop)} {
     padding-top: 0;
     max-width: none;
@@ -99,8 +101,12 @@ const LinkRow = styled.div<{ num: LinkColorNumber }>`
       theme((t) => t.sectionContacts[`contactTextColor${props.num}`])(props)};
   }
 `
-const LinkRowTop = styled.div`
+const LinkRowTop = styled.ul`
   margin-bottom: auto;
+
+  /* li {
+    list-style-type: disc;
+  } */
 `
 const linkMap: [string, string, string][] = [
   ["Email", "mailto:koldasov3@gmail.com", "koldasov3@gmail.com"],
@@ -114,11 +120,11 @@ const linkMap: [string, string, string][] = [
     "https://www.linkedin.com/in/egor-koldasov",
     "https://www.linkedin.com/in/egor-koldasov",
   ],
-  [
-    "Upwork",
-    "https://www.upwork.com/freelancers/egor",
-    "https://www.upwork.com/freelancers/egor",
-  ],
+  // [
+  //   "Upwork",
+  //   "https://www.upwork.com/freelancers/egor",
+  //   "https://www.upwork.com/freelancers/egor",
+  // ],
 ]
 
 const DesktopLinksStyled = styled.div`
@@ -176,15 +182,20 @@ export const SectionContacts = () => {
         </PhotoBox>
         <PhotoText className="column">
           <LinkRowTop>
-            I&apos;m located at{" "}
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://www.google.com/maps/place/Tbilisi"
-            >
-              Tbilisi, Georgia
-            </a>{" "}
-            (GMT+4) and open for remote offers.
+            <li>
+              • I am based in{" "}
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.google.com/maps/place/Tbilisi"
+              >
+                Tbilisi, Georgia
+              </a>{" "}
+              (GMT+4)
+            </li>
+            <li>• Remote contractor</li>
+            <li>• Relocation friendly</li>
+            <li>• Working hours are adaptive to any part of the world</li>
           </LinkRowTop>
           <DesktopLinks />
           <MobileLinks />
