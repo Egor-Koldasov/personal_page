@@ -7,10 +7,10 @@ export const useFullScreenBoxScroll = () => {
   useEffect(() => {
     const fullScreenBox = document.getElementById("full-screen-box")
     if (!fullScreenBox) return
-    const onScroll = throttle(() => {
+    const onScroll = () => {
       const scrollY = fullScreenBox.scrollTop
       setTranslateY(scrollY)
-    }, 64)
+    }
     fullScreenBox.addEventListener("scroll", onScroll)
     return () => fullScreenBox.removeEventListener("scroll", onScroll)
   }, [])

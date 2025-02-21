@@ -148,7 +148,7 @@ const EntryBgImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   will-change: transform;
-  transition: transform 0.1s linear;
+  /* transition: transform 0.1s linear; */
   width: 100%;
   height: 100%;
 `
