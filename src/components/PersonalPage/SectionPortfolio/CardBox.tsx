@@ -62,7 +62,12 @@ export const CardBox = ({
 }: CardBoxProps) => {
   const active = activeItem === portfolioItem.projectName
   const onClick = useCallback(() => {
-    if (!active) setActiveItem(portfolioItem.projectName)
+    if (!active) {
+      setActiveItem(portfolioItem.projectName)
+      document
+        .getElementById("experience")
+        ?.scrollIntoView({ behavior: "smooth" })
+    }
   }, [active, portfolioItem.projectName, setActiveItem])
   const onClose = useCallback(() => {
     setActiveItem("")

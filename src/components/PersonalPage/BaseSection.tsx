@@ -7,11 +7,12 @@ const SectionStyled = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100%;
-  justify-content: center;
-  border-bottom: 1px solid ${theme((t) => t.basic.sectionDividerColor)};
+  justify-content: flex-start;
+  gap: 2rem;
+  /* border-bottom: 1px solid ${theme((t) => t.basic.sectionDividerColor)}; */
   && {
-    padding: 2rem;
+    padding: 0;
+    padding-bottom: 4rem;
   }
 `
 

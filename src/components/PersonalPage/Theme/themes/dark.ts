@@ -14,6 +14,7 @@ const white = "#e1e4e8"
 const basic = {
   textColor: white,
   sectionDividerColor: white,
+  sectionTitleBg: bgGreyDark,
   bgColor: bgBlack,
   scrollColor: "#333",
   scrollHoverColor: "#555",

@@ -1,14 +1,15 @@
 import Image from "next/image"
 import styled from "styled-components"
-import { Paths } from "../../lib/types/Path"
+import { UnexpectedError } from "../../lib/error/UnexpectedError"
 import { breakpointFrom } from "../../styles/modules/breakpointFrom"
-import { bpDesktop } from "../../styles/modules/vars"
+import { bpDesktop, bpTablet } from "../../styles/modules/vars"
 import { BaseSection } from "./BaseSection"
-import { theme, themeProp } from "./Theme/themeProp"
+import { BaseSectionContent } from "./BaseSectionContent"
+import { BaseSectionTitle } from "./BaseSectionTitle"
+import { LinkColorNumber } from "./SectionContacts.type"
+import { theme } from "./Theme/themeProp"
 import { Theme } from "./Theme/themes"
 import { WrapperProps } from "./WrapperProps"
-import { LinkColorNumber } from "./SectionContacts.type"
-import { UnexpectedError } from "../../lib/error/UnexpectedError"
 
 const Section3Styled = styled(BaseSection)`
   background-color: ${theme((t) => t.sectionContacts.mainBg)};
@@ -20,20 +21,14 @@ const Section3Styled = styled(BaseSection)`
     justify-content: center;
   }
 `
-const Title = styled.h3`
-  text-align: center;
-  /* color: ${theme((t) => t.sectionContacts.titleColor)}; */
-  font-size: 1.5rem;
-  && {
-    font-weight: bold;
-  }
-`
+const Title = styled(BaseSectionTitle)``
+
 const Photo = (props: WrapperProps) => (
   <Image
     src="/photo.jpg"
     alt="photo"
-    width={300}
-    height={300}
+    width={200}
+    height={200}
     {...props}
     objectFit="contain"
     priority
@@ -42,13 +37,16 @@ const Photo = (props: WrapperProps) => (
 const PhotoStyled = styled(Photo)`
   flex-shrink: 1;
   height: auto;
+  height: 300px;
 `
 const ProfileBlock = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   flex-grow: 1;
+  gap: 1rem;
   ${breakpointFrom(bpDesktop)} {
     flex-direction: row;
     flex-grow: 0;
@@ -57,13 +55,18 @@ const ProfileBlock = styled.div`
   /* background-color: #ddedec; */
 `
 const PhotoBox = styled.div`
-  max-width: 200px;
-  max-height: 200px;
-  min-width: 150px;
+  width: 100px;
+  height: 100px;
+  ${breakpointFrom(bpTablet)} {
+    width: 200px;
+    height: 200px;
+  }
+
   border: 6px solid ${theme((t) => t.sectionContacts.photoBorderColor)};
   padding: 0;
   border-radius: 50%;
   overflow: clip;
+  flex-shrink: 0;
 `
 const PhotoText = styled.div`
   color: ${theme((t) => t.sectionContacts.textColor)};
@@ -73,11 +76,12 @@ const PhotoText = styled.div`
   padding-bottom: 0;
   font-size: 1rem;
   max-width: 700px;
+  gap: 1rem;
   ${breakpointFrom(bpDesktop)} {
     padding-top: 0;
     max-width: none;
     justify-content: flex-end;
-    align-self: stretch;
+    /* align-self: stretch; */
   }
 `
 
@@ -95,13 +99,13 @@ const getContactTextColor_ = (
 }
 
 const LinkRow = styled.div<{ num: LinkColorNumber }>`
-  font-weight: bold;
-  a {
+  /* font-weight: bold; */
+  /* a {
     color: ${(props) =>
-      theme((t) => t.sectionContacts[`contactTextColor${props.num}`])(props)};
-  }
+    theme((t) => t.sectionContacts[`contactTextColor${props.num}`])(props)};
+  } */
 `
-const LinkRowTop = styled.ul`
+const ContactSummary = styled.div`
   margin-bottom: auto;
 
   /* li {
@@ -128,11 +132,14 @@ const linkMap: [string, string, string][] = [
 ]
 
 const DesktopLinksStyled = styled.div`
-  display: none;
+  /* display: none; */
   ${breakpointFrom(bpDesktop)} {
     display: block;
   }
-  font-size: 0.8rem;
+  ${breakpointFrom(bpTablet)} {
+    display: block;
+    font-size: 0.8rem;
+  }
 `
 
 const getLinkRowNumber = (num: number): LinkColorNumber => {
@@ -154,7 +161,7 @@ const DesktopLinks = () => (
   </DesktopLinksStyled>
 )
 const MobileLinksStyled = styled.div`
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 0 var(--block-spacing);
   ${breakpointFrom(bpDesktop)} {
@@ -175,15 +182,15 @@ const MobileLinks = () => (
 export const SectionContacts = () => {
   return (
     <Section3Styled>
-      <Title className="title">My Contacts</Title>
-      <ProfileBlock className="columns">
-        <PhotoBox className="column">
-          <Photo />
-        </PhotoBox>
-        <PhotoText className="column">
-          <LinkRowTop>
-            <li>
-              • I am based in{" "}
+      <Title id="contacts">Contacts</Title>
+      <BaseSectionContent>
+        <ProfileBlock>
+          <PhotoBox>
+            <Photo />
+          </PhotoBox>
+          <PhotoText>
+            <ContactSummary>
+              I’m based in{" "}
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -191,16 +198,15 @@ export const SectionContacts = () => {
               >
                 Tbilisi, Georgia
               </a>{" "}
-              (GMT+4)
-            </li>
-            <li>• Remote contractor</li>
-            <li>• Relocation friendly</li>
-            <li>• Working hours are adaptive to any part of the world</li>
-          </LinkRowTop>
-          <DesktopLinks />
-          <MobileLinks />
-        </PhotoText>
-      </ProfileBlock>
+              (GMT+4), work as a remote contractor, and am open to relocation.
+              My working hours are flexible to accommodate any time zone.
+              Tbilisi, Georgia (GMT+4)
+            </ContactSummary>
+            <DesktopLinks />
+            <MobileLinks />
+          </PhotoText>
+        </ProfileBlock>
+      </BaseSectionContent>
     </Section3Styled>
   )
 }

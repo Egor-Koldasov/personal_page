@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { theme, themeProp } from "./Theme/themeProp"
 
 export const FullScreenBox = styled.div`
+  scroll-behavior: smooth;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -10,6 +11,8 @@ export const FullScreenBox = styled.div`
   height: 100%;
   width: 100%;
   overflow: auto;
+  padding-top: 40px;
+  background-color: ${theme((t) => t.sectionValues.mainBg)};
   &::-webkit-scrollbar {
     width: 12px;
     height: 12px;

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components"
+import { useFullScreenBoxScroll } from "../../lib/useOnFullScreenBoxScroll"
 import { breakpointFrom } from "../../styles/modules/breakpointFrom"
 import {
   bgBlack,
@@ -8,10 +9,8 @@ import {
 } from "../../styles/modules/colors"
 import { bpTablet } from "../../styles/modules/vars"
 import { BaseSection } from "./BaseSection"
-import { theme, themeProp } from "./Theme/themeProp"
-import Image from "next/image"
-import { useEffect, useState } from "react"
-import { debounce, throttle } from "lodash"
+import { BaseSectionContent } from "./BaseSectionContent"
+import { theme } from "./Theme/themeProp"
 
 const theme1 = {
   section1Bg: `#FFCED4`,
@@ -132,6 +131,7 @@ const Section1Styled = styled(BaseSection)`
   /* animation: 3s ${sectionEntryKeyframe}; */
   overflow: clip;
   position: relative;
+  min-height: 100%;
 `
 
 const EntryBgImage = styled.div`
@@ -160,31 +160,22 @@ const ParalaxContainer = styled.div`
 `
 
 export const SectionEntry = () => {
-  const [translateY, setTranslateY] = useState(0)
-
-  useEffect(() => {
-    const fullScreenBox = document.getElementById("full-screen-box")
-    if (!fullScreenBox) return
-    const onScroll = throttle(() => {
-      const scrollY = fullScreenBox.scrollTop
-      setTranslateY(scrollY)
-    }, 64)
-    fullScreenBox.addEventListener("scroll", onScroll)
-    return () => fullScreenBox.removeEventListener("scroll", onScroll)
-  }, [])
+  const { scrollTop } = useFullScreenBoxScroll()
 
   return (
     <Section1Styled className="">
-      <EntryBgImage
-        style={{ transform: `translate(-50%, ${translateY * 0.5}px)` }}
-      />
-      <ParalaxContainer>
-        <NameTitle className="title">Egor Koldasov</NameTitle>
-        <WebDevTitleBorderBox className="title">
-          <WebDevTitle>Web Developer</WebDevTitle>
-        </WebDevTitleBorderBox>
-        <StackTitle className="title">React TypeScript Go</StackTitle>
-      </ParalaxContainer>
+      <BaseSectionContent>
+        <EntryBgImage
+          style={{ transform: `translate(-50%, ${scrollTop * 0.5}px)` }}
+        />
+        <ParalaxContainer>
+          <NameTitle className="title">Egor Koldasov</NameTitle>
+          <WebDevTitleBorderBox className="title">
+            <WebDevTitle>Web Developer</WebDevTitle>
+          </WebDevTitleBorderBox>
+          <StackTitle className="title">React TypeScript Go</StackTitle>
+        </ParalaxContainer>
+      </BaseSectionContent>
     </Section1Styled>
   )
 }

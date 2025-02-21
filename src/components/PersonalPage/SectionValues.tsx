@@ -5,6 +5,8 @@ import { bpTablet } from "../../styles/modules/vars"
 import { BaseSection } from "./BaseSection"
 import { theme, themeProp } from "./Theme/themeProp"
 import { WrapperProps } from "./WrapperProps"
+import { BaseSectionTitle } from "./BaseSectionTitle"
+import { BaseSectionContent } from "./BaseSectionContent"
 
 const SectionValuesStyled = styled(BaseSection)`
   background-color: ${theme((t) => t.sectionValues.mainBg)};
@@ -39,15 +41,8 @@ export const ListStyled = styled.ul`
     gap: 16px;
   }
 `
-const Title = styled.h3`
-  text-align: center;
-  /* color: ${theme((t) => t.sectionValues.titleTextColor)}; */
-  /* text-transform: uppercase; */
-  font-size: 1.5rem;
-  && {
-    font-weight: bold;
-  }
-`
+const Title = styled(BaseSectionTitle)``
+
 const ListElement = (props: WrapperProps) => (
   <ListElementStyled className={cn(props.className, "")}>
     <div className="content">• {props.children}</div>
@@ -76,33 +71,35 @@ const Accent6 = styled.span`
 
 export const SectionValues = () => (
   <SectionValuesStyled className="">
-    <Title className="title">Professional summary</Title>
-    <ListStyled className="has-text-light card">
-      <ListElement>
-        <Accent1>Product-Oriented Full-Stack Developer</Accent1> experienced in
-        small, fast-paced startup teams.
-      </ListElement>
-      <ListElement>
-        Proven <Accent2>10+ years</Accent2> in contractor-based roles,
-        delivering <Accent2>end-to-end solutions</Accent2> including
-        architecture, back-end and front-end.
-      </ListElement>
-      <ListElement>
-        Skilled at <Accent3>rapid iteration</Accent3>, adapting to minimal
-        oversight while aligning on core product goals.
-      </ListElement>
-      <ListElement>
-        <Accent4>Proactive communicator:</Accent4> raise concerns, share
-        technical insights, and mentor peers.
-      </ListElement>
-      <ListElement>
-        <Accent5>Unstoppable experimenter</Accent5> who consistently overcomes
-        technical challenges.
-      </ListElement>
-      <ListElement>
-        Open to <Accent6>formal leadership opportunities</Accent6>; adept at
-        balancing team collaboration with hands-on coding.
-      </ListElement>
-    </ListStyled>
+    <Title id="overview">Overview</Title>
+    <BaseSectionContent>
+      <ListStyled className="has-text-light card">
+        <ListElement>
+          <Accent1>Product-Oriented Full-Stack Developer</Accent1> experienced
+          in small, fast-paced startup teams.
+        </ListElement>
+        <ListElement>
+          Proven <Accent2>10+ years</Accent2> in contractor-based roles,
+          delivering <Accent2>end-to-end solutions</Accent2> including
+          architecture, back-end and front-end.
+        </ListElement>
+        <ListElement>
+          Skilled at <Accent3>rapid iteration</Accent3>, adapting to minimal
+          oversight while aligning on core product goals.
+        </ListElement>
+        <ListElement>
+          <Accent4>Proactive communicator:</Accent4> raise concerns, share
+          technical insights, and mentor peers.
+        </ListElement>
+        <ListElement>
+          <Accent5>Unstoppable experimenter</Accent5> who consistently overcomes
+          technical challenges.
+        </ListElement>
+        <ListElement>
+          Open to <Accent6>formal leadership opportunities</Accent6>; adept at
+          balancing team collaboration with hands-on coding.
+        </ListElement>
+      </ListStyled>
+    </BaseSectionContent>
   </SectionValuesStyled>
 )

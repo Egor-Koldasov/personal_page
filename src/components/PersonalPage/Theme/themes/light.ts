@@ -15,6 +15,7 @@ const black = "#333"
 const basic = {
   textColor: black,
   sectionDividerColor: black,
+  sectionTitleBg: "#e7e7e1",
   bgColor: "#fbfbf8",
   scrollColor: "#ccc",
   scrollHoverColor: "#aaa",
