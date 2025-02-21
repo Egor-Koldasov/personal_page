@@ -11,6 +11,7 @@ import { bpTablet } from "../../styles/modules/vars"
 import { BaseSection } from "./BaseSection"
 import { BaseSectionContent } from "./BaseSectionContent"
 import { theme } from "./Theme/themeProp"
+import Head from "next/head"
 
 const theme1 = {
   section1Bg: `#FFCED4`,
@@ -164,6 +165,10 @@ export const SectionEntry = () => {
 
   return (
     <Section1Styled className="">
+      <Head>
+        <link rel="preload" as="image" href="/backgrounds/editor_light.png" />
+        <link rel="preload" as="image" href="/backgrounds/editor_dark.png" />
+      </Head>
       <BaseSectionContent>
         <EntryBgImage
           style={{ transform: `translate(-50%, ${scrollTop * 0.5}px)` }}
