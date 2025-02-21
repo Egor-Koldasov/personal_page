@@ -9,7 +9,7 @@ export const ThemeSwitchStyled = styled.div<{ nextThemeName: ThemeName }>`
   color: ${theme((t) => t.basic.textColor)};
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 8px;
   & > span {
     height: 24px;

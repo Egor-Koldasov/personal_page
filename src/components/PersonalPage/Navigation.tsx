@@ -24,13 +24,18 @@ const NavigationPanel = styled.div`
   flex-direction: column;
   align-items: start;
 
+  ${ThemeSwitchStyled} {
+    width: 100%;
+  }
+
   ${breakpointFrom(bpTablet)} {
     display: flex;
     flex-direction: row;
     align-items: center;
-  }
-  ${ThemeSwitchStyled} {
-    margin-left: auto;
+    ${ThemeSwitchStyled} {
+      margin-left: auto;
+      width: auto;
+    }
   }
 
   ${breakpointFrom(bpTablet)} {
@@ -93,13 +98,18 @@ const NavigationBox = styled.div<{ open: boolean; scrolled: boolean }>`
     `}
 `
 
-const DesktopNavigationLink = styled.a`
+const NavigationLink = styled.a`
   padding: 8px 16px;
+  width: 100%;
+  ${breakpointFrom(bpTablet)} {
+    width: auto;
+  }
   /* border-left: 1px solid ${theme((t) => t.basic.textColor)}; */
 `
 
 const MobileThemeSwitchBox = styled.div`
   display: flex;
+  width: 100%;
   ${breakpointFrom(bpTablet)} {
     display: none;
   }
@@ -138,15 +148,9 @@ export const Navigation = () => {
           <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
         </MobileNavigationButton>
         <NavigationPanel onClick={onPanelClick}>
-          <DesktopNavigationLink href="#overview">
-            Overview
-          </DesktopNavigationLink>
-          <DesktopNavigationLink href="#experience">
-            Experience
-          </DesktopNavigationLink>
-          <DesktopNavigationLink href="#contacts">
-            Contacts
-          </DesktopNavigationLink>
+          <NavigationLink href="#overview">Overview</NavigationLink>
+          <NavigationLink href="#experience">Experience</NavigationLink>
+          <NavigationLink href="#contacts">Contacts</NavigationLink>
           <MobileThemeSwitchBox>
             <ThemeSwitch>Dark/Light mode</ThemeSwitch>
           </MobileThemeSwitchBox>
